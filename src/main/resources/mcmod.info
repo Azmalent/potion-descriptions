@@ -1,0 +1,12 @@
+[
+{
+  "modid": "potiondescriptions",
+  "name": "Potion Descriptions",
+  "description": "Adds effect descriptions to potion tooltips.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["azmalent"]
+}
+]

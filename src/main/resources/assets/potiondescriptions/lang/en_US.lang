@@ -1,0 +1,105 @@
+tooltip.potiondescriptions.effect=Effect: %s%s
+tooltip.potiondescriptions.sourceMod=Added by: §o%s
+tooltip.potiondescriptions.sneakToView=Press §d%s§7 for effect description
+
+# Vanilla
+effect.moveSpeed.desc=Increases walking speed.
+effect.moveSlowdown.desc=Decreases walking speed.
+effect.digSpeed.desc=Increases mining and attack speed.
+effect.digSlowDown.desc=Decreases mining and attack speed.
+effect.damageBoost.desc=Increases melee damage.
+effect.heal.desc=Heals living entities and damages undead.
+effect.harm.desc=Damages living entities and heals undead.
+effect.jump.desc=Increases jump height and reduces fall damage.
+effect.confusion.desc=Distorts the player's screen.
+effect.regeneration.desc=Restores health over time.
+effect.resistance.desc=Reduces damage taken.
+effect.fireResistance.desc=Grants immunity to fire and lava.
+effect.waterBreathing.desc=Grants the ability to breathe underwater.
+effect.invisibility.desc=Grants invisibility.
+effect.blindness.desc=Reduces viewing range and prevents the player from sprinting and dealing critical hits.
+effect.nightVision.desc=Allows to see in the dark.
+effect.hunger.desc=Increases hunger exhaustion rate.
+effect.weakness.desc=Decreases melee damage.
+effect.poison.desc=Deals damage over time. Does not affect undead.
+effect.wither.desc=Deals damage over time.
+effect.healthBoost.desc=Increases maximum health.
+effect.absorption.desc=Grants additional health points.
+effect.saturation.desc=Restores hunger over time.
+effect.glowing.desc=Outlines entities, making them visible through blocks.
+effect.luck.desc=Can increase the quality and quantity of loot.
+effect.unluck.desc=Can decrease the quality and quantity of loot.
+effect.levitation.desc=Makes affected entities float upward.
+
+# Charm
+charm.potion.coffee.name.desc=Gives Speed, Haste and Strength for a short time.
+charm.potion.decay.name.desc=Inflicts wither.
+charm.potion.ender_sight.name.desc=Allows to locate the stronghold and attracts endermen.
+
+# Consecration
+effect.holy.desc=Deals heavy damage to undead.
+
+# Mystical Wildlife
+potion.effect.mysticalwildlife.breeding.desc=Causes animals to breed when possible and reduces breeding cooldown.
+potion.effect.mysticalwildlife.breeding_instant.desc=Causes animals to breed immediately.
+
+# Potion Core
+effect.fire.desc=Sets the target on fire.
+effect.lightning.desc=Strikes the target with lightning.
+effect.explode.desc=Creates an explosion.
+effect.burst.desc=Creates an explosion that doesn't damage the target and surrounding blocks.
+effect.weight.desc=Decreases jump height.
+effect.recoil.desc=Reflects some of the damage back to the attacker.
+effect.drown.desc=Makes the target only breath underwater.
+effect.archery.desc=Increases projectile damage.
+effect.klutz.desc=Decreases projectile damage.
+effect.vulnerable.desc=Increases damage taken.
+effect.antidote.desc=Grants immunity to poison.
+effect.purity.desc=Grants immunity to wither.
+effect.cure.desc=Clears all negative potion effects.
+effect.dispel.desc=Clears all positive potion effects.
+effect.slow_fall.desc=Reduces falling speed and fall damage.
+effect.solid_core.desc=Grants resistance to knockback.
+effect.launch.desc=Launches the target into the air.
+effect.climb.desc=Allows climbing on walls.
+effect.love.desc=Causes affected animals to breed.
+effect.step_up.desc=Increases step height.
+effect.perplexity.desc=Reverses player's controls.
+effect.disorganization.desc=Shuffles player's inventory.
+effect.spin.desc=Makes the target spin around.
+effect.repair.desc=Repairs target's equipped and held items.
+effect.rust.desc=Damages target's equipped and held items. Gold is not affected.
+effect.extension.desc=Extends the duration of one random effect per level.
+effect.chance.desc=Gives a random potion effect.
+effect.bless.desc=Gives a random positive potion effect.
+effect.curse.desc=Gives a random negative potion effect.
+effect.teleport.desc=Teleports the target to a random nearby location.
+effect.teleport_surface.desc=Teleports the target to the surface.
+effect.teleport_spawn.desc=Teleports you to the spawn after standing still for 10 seconds.
+effect.flight.desc=Grants creative flight.
+effect.invert.desc=Inverts potion effects.
+effect.revival.desc=Revives the target with 2 hearts per level on death.
+effect.reach.desc=Increases reach.
+effect.magic_focus.desc=Increases magic damage.
+effect.magic_inhibition.desc=Decreases magic damage.
+effect.magic_shield.desc=Reduces magic damage taken.
+effect.broken_magic_shield.desc=Increases magic damage taken..
+effect.iron_skin.desc=Increases armor.
+effect.broken_armor.desc=Decreases armor.
+effect.diamond_skin.desc=Increases armor toughness.
+
+# Railcraft
+potion.railcraft.creosote.desc=Deals damage over time to arthropods.
+
+# Random Things
+Collapse.desc=Reverses player's controls.
+
+# Rustic
+effect.ironskin.desc=Increases armor and armor toughness.
+effect.blazing_trail.desc=Leaves a trail of fire behind the target.
+effect.feather.desc=Reduces falling speed and negates fall damage.
+
+# Quark
+quark.potion.resilience.name.desc=Increases knockback resistance.
+quark.potion.danger_sight.name.desc=Highlights spots where hostile mobs can spawn.
+
