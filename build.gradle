@@ -15,11 +15,11 @@ ext.configFile = file('gradle.properties')
 ext.config = parseConfig(configFile)
 
 version = "${minecraft_version}-${mod_version}"
-group = 'azmalent.potiondescriptions' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = 'potiondescriptions'
+group = "azmalent.${modid}"
+archivesBaseName = modid
 
 minecraft {
-    mappings channel: 'snapshot', version: mappings_version
+    mappings channel: mappings_channel, version: mappings_version
 
     runs {
         client {
@@ -81,7 +81,7 @@ processResources {
 
 sourceSets {
     main {
-        output.resourcesDir = output.classesDir
+        //output.resourcesDir = output.classesDir
     }
 }
 
@@ -93,3 +93,4 @@ static def parseConfig(File config) {
     }
 }
 
+jar.finalizedBy('reobfJar')

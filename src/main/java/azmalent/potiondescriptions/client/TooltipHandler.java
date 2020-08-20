@@ -28,8 +28,6 @@ import java.util.List;
 public class TooltipHandler {
     private static final boolean RUSTIC_LOADED = Loader.isModLoaded("rustic");
 
-    private static final KeyBinding sneakButton = Minecraft.getMinecraft().gameSettings.keyBindSneak;
-
     @SubscribeEvent
     public void onPotionTooltip(ItemTooltipEvent event) {
         ItemStack itemStack = event.getItemStack();
@@ -57,6 +55,7 @@ public class TooltipHandler {
     }
 
     private void addTooltip(List<PotionEffect> effects, List<String> tooltip) {
+        KeyBinding sneakButton = Minecraft.getMinecraft().gameSettings.keyBindSneak;
         boolean sneaking = GameSettings.isKeyDown(sneakButton);
 
         if (!sneaking && ModConfig.sneakRequired && ModConfig.sneakMessageEnabled) {
