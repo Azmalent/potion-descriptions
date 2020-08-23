@@ -38,12 +38,12 @@ bewitchment.corruption.desc=Clears all positive potion effects.
 bewitchment.magic_resistance.desc=Reduces magic damage taken.
 bewitchment.magic_weakness.desc=Increases magic damage taken.
 bewitchment.hellworld.desc=Transforms landscape into Nether.
-bewitchment.iceworld.desc=Transforms landscape into a winter wonderland.\nCreates perpetual ice, which doesn't melt.
+bewitchment.iceworld.desc=Transforms landscape into a winter wonderland. Creates perpetual ice, which doesn't melt.
 bewitchment.rubedo.desc=Turns sand and colored blocks red.
 bewitchment.citrinitas.desc=Turns sand and colored blocks yellow.
 bewitchment.desertification.desc=Turns plants into their desert counterparts.
 bewitchment.fertility.desc=Causes plants to grow and animals to breed.
-bewitchment.harvest.desc=Instantly harvests and replants seeds.\nMay cause leaves to drop apples and pumpkins to grow.
+bewitchment.harvest.desc=Instantly harvests and replants seeds. May cause leaves to drop apples and pumpkins to grow.
 bewitchment.spore_cloud.desc=Causes mushrooms, mycelium, moss and ferns to grow.
 bewitchment.blight.desc=Kills plants and crops. Weakens creatures.
 bewitchment.ruin.desc=Causes blocks to decay or break down.
@@ -74,8 +74,8 @@ bewitchment.friendship.desc=Tames inflicted animals.
 # Botania
 botania.potion.soulCross.desc=Restores health upon slaying any other creature.
 botania.potion.featherFeet.desc=Negates fall damage.
-botania.potion.emptiness.desc=Prevents mob spawning in a 128 block radius.\nMutually exclusive with §oBloodthirst.
-botania.potion.bloodthirst.desc=Allows mobs to spawn regardless of normal conditions within 64 blocks.\nMutually exclusive with§oEmptiness.
+botania.potion.emptiness.desc=Prevents mob spawning in a 128 block radius.
+botania.potion.bloodthirst.desc=Allows mobs to spawn regardless of normal conditions within 64 blocks.
 botania.potion.allure.desc=Doubles the speed of catching fish and fishing loot.
 botania.potion.clear.desc=Clears all potion effects, both positive and negative.
 
