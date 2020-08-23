@@ -1,6 +1,6 @@
 [
 {
-  "modid": "potiondescriptions",
+  "modid": "${modid}",
   "name": "Potion Descriptions",
   "description": "Adds effect descriptions to potion tooltips.",
   "version": "${version}",

@@ -56,7 +56,6 @@ jar {
     }
 }
 
-
 repositories {
     maven {
         url = "https://www.cursemaven.com"
@@ -65,13 +64,16 @@ repositories {
 
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
-    compileOnly fileTree(dir: 'libs', include: '*.jar')
+    compileOnly "curse.maven:botania:2846950"
+    compileOnly "curse.maven:blood-magic:2822288"
+    compileOnly "curse.maven:actually-additions:2844115"
+    compileOnly "curse.maven:rustic:3028866"
 }
 
 processResources {
     from(sourceSets.main.resources.srcDirs) {
         include 'mcmod.info'
-        expand 'version': project.version, 'mcversion': minecraft_version
+        expand 'modid': modid, 'version': project.version, 'mcversion': minecraft_version
     }
 
     from(sourceSets.main.resources.srcDirs) {
@@ -81,7 +83,7 @@ processResources {
 
 sourceSets {
     main {
-        //output.resourcesDir = output.classesDir
+        output.resourcesDir = output.classesDir
     }
 }
 

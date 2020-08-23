@@ -1,7 +1,12 @@
 package azmalent.potiondescriptions.client;
 
+import WayofTime.bloodmagic.core.RegistrarBloodMagicItems;
+import WayofTime.bloodmagic.item.ItemPotionFlask;
 import azmalent.potiondescriptions.ModConfig;
 import com.mojang.realmsclient.gui.ChatFormatting;
+import de.ellpeck.actuallyadditions.api.ActuallyAdditionsAPI;
+import de.ellpeck.actuallyadditions.mod.items.InitItems;
+import de.ellpeck.actuallyadditions.mod.items.ItemCoffee;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.settings.GameSettings;
@@ -20,12 +25,18 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import rustic.common.items.ItemElixir;
+import rustic.common.items.ModItems;
 import rustic.common.util.ElixirUtils;
+import vazkii.botania.api.brew.IBrewItem;
 
+import java.util.Arrays;
 import java.util.List;
 
 @SideOnly(Side.CLIENT)
 public class TooltipHandler {
+    private static final boolean BOTANIA_LOADED = Loader.isModLoaded("botania");
+    private static final boolean BLOOD_MAGIC_LOADED = Loader.isModLoaded("bloodmagic");
+    private static final boolean ACTUALLY_ADDITIONS_LOADED = Loader.isModLoaded("actuallyadditions");
     private static final boolean RUSTIC_LOADED = Loader.isModLoaded("rustic");
 
     @SubscribeEvent
@@ -34,21 +45,22 @@ public class TooltipHandler {
         if (itemStack.isEmpty()) return;
 
         Item item = itemStack.getItem();
-        if (item instanceof ItemPotion || item instanceof ItemTippedArrow) {
+        if (item instanceof ItemPotion || item instanceof ItemTippedArrow
+                || BLOOD_MAGIC_LOADED && item == RegistrarBloodMagicItems.POTION_FLASK) {
             List<PotionEffect> effects = PotionUtils.getEffectsFromStack(itemStack);
             addTooltip(effects, event.getToolTip());
         }
-    }
-
-    @SubscribeEvent
-    public void onElixirTooltip(ItemTooltipEvent event) {
-        if (!RUSTIC_LOADED) return;
-
-        ItemStack itemStack = event.getItemStack();
-        if (itemStack.isEmpty()) return;
-
-        Item item = itemStack.getItem();
-        if (item instanceof ItemElixir) {
+        else if(BOTANIA_LOADED && item instanceof IBrewItem) {
+            List<PotionEffect> effects = ((IBrewItem) item).getBrew(itemStack).getPotionEffects(itemStack);
+            addTooltip(effects, event.getToolTip());
+        }
+        else if (ACTUALLY_ADDITIONS_LOADED && item == InitItems.itemCoffee) {
+            PotionEffect[] effects = ActuallyAdditionsAPI.methodHandler.getEffectsFromStack(itemStack);
+            if (effects != null && effects.length > 0) {
+                addTooltip(Arrays.asList(effects), event.getToolTip());
+            }
+        }
+        else if (RUSTIC_LOADED && item == ModItems.ELIXIR) {
             List<PotionEffect> effects = ElixirUtils.getEffects(itemStack);
             addTooltip(effects, event.getToolTip());
         }
