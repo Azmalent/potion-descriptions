@@ -21,14 +21,15 @@ import java.util.Collection;
         dependencies="after:actuallyadditions;" +
                 "after:bloodmagic;" +
                 "after:botania;" +
-                "after:rustic",
+                "after:rustic;" +
+                "after:extraalchemy",
         clientSideOnly=true
 )
 public class PotionDescriptions
 {
     public static final String MODID = "potiondescriptions";
     public static final String NAME = "Potion Descriptions";
-    public static final String VERSION = "1.1";
+    public static final String VERSION = "1.2";
 
     public static Logger logger;
 

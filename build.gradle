@@ -67,6 +67,7 @@ dependencies {
     compileOnly "curse.maven:botania:2846950"
     compileOnly "curse.maven:blood-magic:2822288"
     compileOnly "curse.maven:actually-additions:2844115"
+    compileOnly "curse.maven:extra-alchemy:2937550"
     compileOnly "curse.maven:rustic:3028866"
 }
 
