@@ -1,8 +1,6 @@
 package azmalent.potiondescriptions.client;
 
-import WayofTime.bloodmagic.core.RegistrarBloodMagicItems;
 import azmalent.potiondescriptions.ModConfig;
-import azmalent.potiondescriptions.PotionDescriptions;
 import com.mojang.realmsclient.gui.ChatFormatting;
 import de.ellpeck.actuallyadditions.api.ActuallyAdditionsAPI;
 import de.ellpeck.actuallyadditions.mod.items.InitItems;
@@ -11,9 +9,7 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemPotion;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemTippedArrow;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.potion.PotionUtils;
@@ -37,9 +33,7 @@ import java.util.stream.Collectors;
 @SideOnly(Side.CLIENT)
 public class TooltipHandler {
     private static final boolean BOTANIA_LOADED = Loader.isModLoaded("botania");
-    private static final boolean BLOOD_MAGIC_LOADED = Loader.isModLoaded("bloodmagic");
     private static final boolean ACTUALLY_ADDITIONS_LOADED = Loader.isModLoaded("actuallyadditions");
-    private static final boolean EXTRA_ALCHEMY_LOADED = Loader.isModLoaded("extraalchemy");
     private static final boolean RUSTIC_LOADED = Loader.isModLoaded("rustic");
 
     @SubscribeEvent
@@ -48,9 +42,7 @@ public class TooltipHandler {
         if (itemStack.isEmpty()) return;
 
         Item item = itemStack.getItem();
-        if (item instanceof ItemPotion || isTippedAmmo(item)
-                || BLOOD_MAGIC_LOADED && item == RegistrarBloodMagicItems.POTION_FLASK
-                || EXTRA_ALCHEMY_LOADED && item == zabi.minecraft.extraalchemy.items.ModItems.potion_ring) {
+        if (itemStack.hasTagCompound() && itemStack.getTagCompound().hasKey("Potion")) {
             List<PotionEffect> effects = PotionUtils.getEffectsFromStack(itemStack);
             addTooltip(effects, event.getToolTip());
 
@@ -112,6 +104,7 @@ public class TooltipHandler {
             String line = iterator.next();
             if (line.startsWith(credit) || line.startsWith(uncertainCredit)) {
                 iterator.remove();
+                break;
             }
         }
     }
@@ -137,15 +130,5 @@ public class TooltipHandler {
     private static Boolean isIgnored(PotionEffect effect) {
         String modid = effect.getPotion().getRegistryName().getNamespace();
         return ModConfig.isModIgnored(modid);
-    }
-
-    private static Boolean isTippedAmmo(Item item) {
-        if (item instanceof ItemTippedArrow) return true;
-
-        if (item.getRegistryName().getNamespace().equals("spartanweaponry")) {
-            if (item.getRegistryName().toString().endsWith("_tipped")) return true;
-        }
-
-        return false;
     }
 }
