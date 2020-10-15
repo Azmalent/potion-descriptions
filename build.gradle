@@ -5,7 +5,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:3.+'
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
     }
 }
 
@@ -14,9 +14,13 @@ apply plugin: 'net.minecraftforge.gradle'
 ext.configFile = file('gradle.properties')
 ext.config = parseConfig(configFile)
 
-version = "${minecraft_version}-${mod_version}"
 group = "azmalent.${modid}"
 archivesBaseName = modid
+version = "${minecraft_version}-${mod_version}"
+
+sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
+
+println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 
 minecraft {
     mappings channel: mappings_channel, version: mappings_version
@@ -24,20 +28,40 @@ minecraft {
     runs {
         client {
             workingDirectory project.file('run')
-
-            // Recommended logging data for a userdev environment
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
-
-            // Recommended logging level for the console
             property 'forge.logging.console.level', 'debug'
+
+            mods {
+                cuneiform {
+                    source sourceSets.main
+                }
+            }
         }
 
         server {
-            // Recommended logging data for a userdev environment
+            workingDirectory project.file('run')
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
-
-            // Recommended logging level for the console
             property 'forge.logging.console.level', 'debug'
+
+            mods {
+                cuneiform {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        data {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+            property 'forge.logging.console.level', 'debug'
+
+            args '--mod', 'examplemod', '--all', '--output', file('src/generated/resources/')
+
+            mods {
+                cuneiform {
+                    source sourceSets.main
+                }
+            }
         }
     }
 }
@@ -64,19 +88,20 @@ repositories {
 
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
-    compileOnly "curse.maven:botania:2846950"
-    compileOnly "curse.maven:actually-additions:2844115"
-    compileOnly "curse.maven:rustic:3028866"
+    compileOnly "curse.maven:botania:3081406"
 }
 
 processResources {
     from(sourceSets.main.resources.srcDirs) {
-        include 'mcmod.info'
-        expand 'modid': modid, 'version': project.version, 'mcversion': minecraft_version
+        include 'META-INF/mods.toml'
+
+        expand 'modid': modid, 'mod_name': mod_name, 'mod_version': project.version,
+                'minecraft_version': minecraft_version, 'fml_min': fml_min, 'forge_version': forge_version,
+                'license': license
     }
 
     from(sourceSets.main.resources.srcDirs) {
-        exclude 'mcmod.info'
+        exclude 'META-INF/mods.toml'
     }
 }
 

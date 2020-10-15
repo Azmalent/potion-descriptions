@@ -1,56 +1,50 @@
 package azmalent.potiondescriptions;
 
-import azmalent.potiondescriptions.client.TooltipHandler;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.potion.Potion;
+import net.minecraft.potion.Effect;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventHandler;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.registries.IForgeRegistry;
+import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.FMLEnvironment;
+import net.minecraftforge.fml.loading.FMLPaths;
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.Collection;
 
-@Mod(
-        modid=PotionDescriptions.MODID,
-        name=PotionDescriptions.NAME,
-        version=PotionDescriptions.VERSION,
-        dependencies="after:actuallyadditions;" +
-                "after:botania;" +
-                "after:rustic",
-        clientSideOnly=true
-)
+import static net.minecraftforge.fml.config.ModConfig.Type;
+
+@Mod(PotionDescriptions.MODID)
 public class PotionDescriptions
 {
     public static final String MODID = "potiondescriptions";
-    public static final String NAME = "Potion Descriptions";
-    public static final String VERSION = "1.2.1";
+    public static Logger log = LogManager.getLogger(MODID);
 
-    public static Logger logger;
+    public PotionDescriptions() {
+        if (FMLEnvironment.dist == Dist.CLIENT) {
+            ModLoadingContext.get().registerConfig(Type.CLIENT, ModConfig.SPEC);
+            ModConfig.init(FMLPaths.CONFIGDIR.get().resolve(MODID + "-client.toml"));
 
-    @EventHandler
-    public void preInit(FMLPreInitializationEvent event) {
-        logger = event.getModLog();
-
-        MinecraftForge.EVENT_BUS.register(new TooltipHandler());
+            FMLJavaModLoadingContext.get().getModEventBus().addListener(PotionDescriptions::onLoadComplete);
+            MinecraftForge.EVENT_BUS.addListener(TooltipHandler::onTooltipDisplayed);
+        }
     }
 
-    @EventHandler
-    public void postInit(FMLPostInitializationEvent event)
-    {
-        if (ModConfig.loggingEnabled) {
-            IForgeRegistry potionRegistry = GameRegistry.findRegistry(Potion.class);
-            Collection<Potion> potions = potionRegistry.getValuesCollection();
-
-            for (Potion potion : potions) {
-                String translationKey = potion.getName() + ".desc";
+    @SubscribeEvent
+    public static void onLoadComplete(final FMLLoadCompleteEvent event) {
+        if (ModConfig.loggingEnabled.get()) {
+            Collection<Effect> effects = GameRegistry.findRegistry(Effect.class).getValues();
+            for (Effect effect : effects) {
+                String translationKey = "description." + effect.getName();
                 if (!I18n.hasKey(translationKey)) {
-                    logger.warn(String.format(
+                    log.warn(String.format(
                             "Missing description for effect '%s' (expected translation key: %s)",
-                            I18n.format(potion.getName()), translationKey));
+                            I18n.format(effect.getName()), translationKey));
                 }
             }
         }

@@ -1,36 +1,45 @@
 package azmalent.potiondescriptions;
 
-import net.minecraftforge.common.config.Config;
+import com.electronwill.nightconfig.core.file.CommentedFileConfig;
+import com.electronwill.nightconfig.core.io.WritingMode;
+import net.minecraftforge.common.ForgeConfigSpec;
 
+import java.nio.file.Path;
+import java.util.Arrays;
 import java.util.List;
 
-import static net.minecraftforge.common.config.Config.*;
-
-@Config(modid=PotionDescriptions.MODID)
 public class ModConfig {
-    @Name("Sneaking Required")
-    @Comment("Whether sneaking is required to display the tooltip.")
-    public static boolean sneakRequired = true;
+    public static ForgeConfigSpec.BooleanValue sneakRequired;
+    public static ForgeConfigSpec.BooleanValue sneakMessageEnabled;
+    public static ForgeConfigSpec.BooleanValue loggingEnabled;
 
-    @Name("Enable Sneaking Message")
-    @Comment("Whether to display a message telling the player to sneak.")
-    public static boolean sneakMessageEnabled = true;
+    private static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
+    public static ForgeConfigSpec SPEC;
 
-    @Name("Log missing descriptions")
-    @Comment("If true, potions without descriptions will be listed in the logs.")
-    public static boolean loggingEnabled = false;
+    static {
+        BUILDER.push("Settings");
+        sneakRequired = BUILDER
+                .comment("Whether sneaking is required to display the tooltip.")
+                .define("Sneaking Required", true);
+        sneakMessageEnabled = BUILDER
+                .comment("Whether to display a message telling the player to sneak.")
+                .define("Enable Sneaking Message", true);
+        loggingEnabled = BUILDER
+                .comment("If true, potions without descriptions will be listed in the logs.")
+                .define("Log Missing Descriptions", false);
+        BUILDER.pop();
 
-    @Name("Ignored mods")
-    @Comment("Effects from the following mods will be ignored by this mod.")
-    public static String[] ignoredMods = {
-            "extraalchemy"
-    };
+        SPEC = BUILDER.build();
+    }
 
-    public static Boolean isModIgnored(String modid) {
-        for (int i = 0; i < ignoredMods.length; i++) {
-            if (ignoredMods[i].equals(modid)) return true;
-        }
+    public static void init(Path filePath) {
+        final CommentedFileConfig configData = CommentedFileConfig.builder(filePath)
+                .sync()
+                .autosave()
+                .writingMode(WritingMode.REPLACE)
+                .build();
 
-        return false;
+        configData.load();
+        SPEC.setConfig(configData);
     }
 }
