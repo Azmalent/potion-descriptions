@@ -67,6 +67,7 @@ dependencies {
     compileOnly "curse.maven:botania:2846950"
     compileOnly "curse.maven:actually-additions:2844115"
     compileOnly "curse.maven:rustic:3028866"
+    compileOnly "curse.maven:reliquary-v1-3:2761319"
 }
 
 processResources {

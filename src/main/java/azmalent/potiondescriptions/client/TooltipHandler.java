@@ -23,6 +23,10 @@ import net.minecraftforge.registries.IForgeRegistryEntry;
 import rustic.common.items.ModItems;
 import rustic.common.util.ElixirUtils;
 import vazkii.botania.api.brew.IBrewItem;
+import xreliquary.items.ItemPotionEssence;
+import xreliquary.items.ItemXRPotion;
+import xreliquary.items.ItemXRTippedArrow;
+import xreliquary.util.potions.XRPotionHelper;
 
 import java.util.Arrays;
 import java.util.Iterator;
@@ -35,6 +39,7 @@ public class TooltipHandler {
     private static final boolean BOTANIA_LOADED = Loader.isModLoaded("botania");
     private static final boolean ACTUALLY_ADDITIONS_LOADED = Loader.isModLoaded("actuallyadditions");
     private static final boolean RUSTIC_LOADED = Loader.isModLoaded("rustic");
+    private static final boolean RELIQUARY_LOADED = Loader.isModLoaded("xreliquary");
 
     @SubscribeEvent
     public void onPotionTooltip(ItemTooltipEvent event) {
@@ -64,6 +69,13 @@ public class TooltipHandler {
             List<PotionEffect> effects = ElixirUtils.getEffects(itemStack);
             addTooltip(effects, event.getToolTip());
         }
+        else if (RELIQUARY_LOADED &&
+                (item instanceof ItemPotionEssence
+                || item instanceof ItemXRPotion
+                || item instanceof ItemXRTippedArrow)) {
+            List<PotionEffect> effects = XRPotionHelper.getPotionEffectsFromStack(itemStack);
+            addTooltip(effects, event.getToolTip());
+        }
     }
 
     private void addTooltip(List<PotionEffect> effectList, List<String> tooltip) {
@@ -83,13 +95,11 @@ public class TooltipHandler {
                 Potion potion = effect.getPotion();
 
                 String description = getEffectDescription(potion);
-                if (description == null) continue;
-
                 ChatFormatting effectFormat = potion.isBeneficial() ? ChatFormatting.BLUE : ChatFormatting.RED;
                 String potionName = I18n.format(potion.getName());
 
                 tooltip.add(I18n.format("tooltip.potiondescriptions.effect", effectFormat, potionName));
-                tooltip.add(description);
+                tooltip.add(description != null ? description : I18n.format("tooltip.potiondescriptions.missingDescription", "description." + potion.getName()));
                 tooltip.add(I18n.format("tooltip.potiondescriptions.sourceMod", getModName(potion)));
             }
         }

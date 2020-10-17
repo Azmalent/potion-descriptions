@@ -1,6 +1,7 @@
 tooltip.potiondescriptions.effect=Effect: %s%s
 tooltip.potiondescriptions.sourceMod=Added by: §o%s
 tooltip.potiondescriptions.sneakToView=Press §d%s§7 for effect description
+tooltip.potiondescriptions.missingDescription=Missing lang key for %s
 
 # Vanilla
 description.effect.moveSpeed=Increases walking speed.
@@ -87,6 +88,16 @@ description.charm.potion.ender_sight.name=Allows to locate the stronghold and at
 # Consecration
 description.effect.holy=Deals heavy damage to undead.
 
+# Natural Pledge
+description.naturalpledge.potion.immortality=Grants resistance to most forms of damage.
+description.naturalpledge.potion.drab=Turns vision monochrome.
+
+# NetherEX
+description.mob_effect.netherex:frozen=Prevents the target from using items and attacking. Mobs are also prevented from moving.
+description.mob_effect.netherex:frostbitten=Prevents natural health regeneration.
+description.mob_effect.netherex:infested=Causes spores to spawn around the target.
+description.mob_effect.netherex:crying=Causes ghastlings to spawn around the target (only in the Nether). Also used to summon Ghast Queen.
+
 # Mystical Wildlife
 description.potion.effect.mysticalwildlife.breeding=Causes animals to breed when possible and reduces breeding cooldown.
 description.potion.effect.mysticalwildlife.breeding_instant=Causes animals to breed immediately.
@@ -139,8 +150,15 @@ description.effect.diamond_skin=Increases armor toughness.
 # Railcraft
 description.potion.railcraft.creosote=Deals damage over time to arthropods.
 
+# Random PSIdeas
+description.rpsideas.potion.psishock=Drains psionic energy from the target.
+description.rpsideas.potion.psipulse=Increases psionic energy restoration speed.
+
 # Random Things
 description.Collapse=Reverses player's controls.
+
+# Reliquary
+description.xreliquary.potion.cure=Cures zombie villagers. Higher levers work faster.
 
 # Rustic
 description.effect.ironskin=Increases armor and armor toughness.

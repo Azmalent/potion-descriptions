@@ -20,14 +20,15 @@ import java.util.Collection;
         version=PotionDescriptions.VERSION,
         dependencies="after:actuallyadditions;" +
                 "after:botania;" +
-                "after:rustic",
+                "after:rustic;" +
+                "after:xreliquary",
         clientSideOnly=true
 )
 public class PotionDescriptions
 {
     public static final String MODID = "potiondescriptions";
     public static final String NAME = "Potion Descriptions";
-    public static final String VERSION = "1.2.1";
+    public static final String VERSION = "1.2.3";
 
     public static Logger logger;
 
