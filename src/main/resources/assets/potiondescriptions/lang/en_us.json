@@ -43,5 +43,8 @@
   "description.effect.botania.clear": "Clears all potion effects, both positive and negative.",
 
   "_comment": "Consecration",
-  "description.effect.consecration.holy": "Deals heavy damage to undead."
+  "description.effect.consecration.holy": "Deals heavy damage to undead.",
+
+  "_comment": "Reliquary",
+  "description.effect.xreliquary.cure": "Cures zombie villagers. Higher levers work faster."
 }

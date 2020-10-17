@@ -12,7 +12,7 @@ description='''
 Adds effect descriptions to potion tooltips.
 '''
 
-[[dependencies.examplemod]]
+[[dependencies.potiondescriptions]]
     modId="forge"
     mandatory=true
     versionRange="[${forge_version},)"
@@ -21,7 +21,7 @@ Adds effect descriptions to potion tooltips.
     # Side this dependency is applied on - BOTH, CLIENT or SERVER
     side="CLIENT"
 
-[[dependencies.examplemod]]
+[[dependencies.potiondescriptions]]
     modId="minecraft"
     mandatory=true
     versionRange="[${minecraft_version}]"
@@ -29,8 +29,14 @@ Adds effect descriptions to potion tooltips.
     side="CLIENT"
 
 
-[[dependencies.examplemod]]
+[[dependencies.potiondescriptions]]
     modId="botania"
+    mandatory=false
+    ordering="BEFORE"
+    side="CLIENT"
+
+[[dependencies.potiondescriptions]]
+    modId="xreliquary"
     mandatory=false
     ordering="BEFORE"
     side="CLIENT"

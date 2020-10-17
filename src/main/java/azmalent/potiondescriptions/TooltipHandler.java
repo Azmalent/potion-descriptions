@@ -20,15 +20,19 @@ import net.minecraftforge.fml.ModContainer;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import vazkii.botania.api.brew.IBrewItem;
+import xreliquary.init.ModItems;
+import xreliquary.items.PotionItemBase;
+import xreliquary.util.potions.XRPotionHelper;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @OnlyIn(Dist.CLIENT)
 public class TooltipHandler {
     public static boolean BOTANIA_LOADED = ModList.get().isLoaded("botania");
+    public static boolean RELIQUARY_LOADED = ModList.get().isLoaded("xreliquary");
 
     @SubscribeEvent
     public static void onTooltipDisplayed(final ItemTooltipEvent event) {
@@ -45,10 +49,17 @@ public class TooltipHandler {
             List<EffectInstance> effects = ((IBrewItem) item).getBrew(itemStack).getPotionEffects(itemStack);
             TooltipHandler.addPotionTooltip(effects, event.getToolTip());
         }
+        else if (RELIQUARY_LOADED &&
+                (item == ModItems.POTION_ESSENCE
+                || item == ModItems.TIPPED_ARROW
+                || item instanceof PotionItemBase)) {
+            List<EffectInstance> effects = XRPotionHelper.getPotionEffectsFromStack(itemStack);
+            TooltipHandler.addPotionTooltip(effects, event.getToolTip());
+        }
     }
 
     public static void addPotionTooltip(List<EffectInstance> effectList, List<ITextComponent> tooltip) {
-        Set<EffectInstance> effects = effectList.stream().collect(Collectors.toSet());
+        Set<EffectInstance> effects = new HashSet(effectList);
         if (effects.isEmpty()) return;
 
         KeyBinding sneakButton = Minecraft.getInstance().gameSettings.keyBindSneak;
@@ -57,7 +68,6 @@ public class TooltipHandler {
 
         if (!sneaking && ModConfig.sneakRequired.get() && ModConfig.sneakMessageEnabled.get()) {
             addString(tooltip, I18n.format("tooltip.potiondescriptions.sneakToView", I18n.format(sneakButton.getTranslationKey())));
-            return;
         }
         else if (sneaking || !ModConfig.sneakRequired.get()) {
             for (EffectInstance effectInstance : effects) {
