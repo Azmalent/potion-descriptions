@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "id": "potiondescriptions",
+  "version": "${version}",
+
+  "name": "Potion Descriptions",
+  "description": "Adds effect descriptions to potion tooltips.",
+  "authors": [ "Azmalent" ],
+  "contact": {
+    "homepage": "https://fabricmc.net/",
+    "sources": "https://github.com/FabricMC/fabric-example-mod"
+  },
+
+  "license": "GPL v3.0",
+  "icon": "icon.png",
+
+  "environment": "*",
+  "custom": {
+    "modmenu:clientsideOnly": true
+  },
+  "entrypoints": {
+    "client": [
+      "azmalent.potiondescriptions.PotionDescriptions"
+    ],
+    "modmenu": [
+      "azmalent.potiondescriptions.PotionDescriptionsModMenu"
+    ]
+  },
+  "mixins": [
+    "potiondescriptions.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.7.4",
+    "fabric": "*",
+    "minecraft": "1.16.x"
+  },
+  "suggests": {
+    "flamingo": "*"
+  }
+}
