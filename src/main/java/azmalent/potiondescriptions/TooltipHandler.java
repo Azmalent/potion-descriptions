@@ -43,10 +43,8 @@ public class TooltipHandler {
         Item item = itemStack.getItem();
 
         List<EffectInstance> effects = null;
-
         if (itemStack.hasTag() && itemStack.getTag().contains("Potion")) {
             effects = PotionUtils.getEffectsFromStack(itemStack);
-            addPotionTooltip(effects, event.getToolTip());
         }
         else if (item == Items.SUSPICIOUS_STEW && ModConfig.suspiciousStewEnabled.get()) {
             effects = getSuspiciousStewEffects(itemStack);
