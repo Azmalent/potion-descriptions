@@ -88,8 +88,7 @@ repositories {
 
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
-    compileOnly "curse.maven:botania:3081406"
-    compileOnly "curse.maven:reliquary-v1-3:3072776"
+    compileOnly "curse.maven:botania:3049926"
 }
 
 processResources {

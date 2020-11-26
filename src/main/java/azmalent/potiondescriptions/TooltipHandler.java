@@ -26,9 +26,6 @@ import net.minecraftforge.fml.ModContainer;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import vazkii.botania.api.brew.IBrewItem;
-import xreliquary.init.ModItems;
-import xreliquary.items.PotionItemBase;
-import xreliquary.util.potions.XRPotionHelper;
 
 import java.util.*;
 
@@ -37,7 +34,6 @@ import static net.minecraftforge.common.util.Constants.*;
 @OnlyIn(Dist.CLIENT)
 public class TooltipHandler {
     public static boolean BOTANIA_LOADED = ModList.get().isLoaded("botania");
-    public static boolean RELIQUARY_LOADED = ModList.get().isLoaded("xreliquary");
 
     @SubscribeEvent
     public static void onTooltipDisplayed(final ItemTooltipEvent event) {
@@ -58,9 +54,6 @@ public class TooltipHandler {
         }
         else if (BOTANIA_LOADED && item instanceof IBrewItem) {
             effects = ((IBrewItem) item).getBrew(itemStack).getPotionEffects(itemStack);
-        }
-        else if (RELIQUARY_LOADED && (item == ModItems.POTION_ESSENCE || item == ModItems.TIPPED_ARROW || item instanceof PotionItemBase)) {
-            effects = XRPotionHelper.getPotionEffectsFromStack(itemStack);
         }
 
         if (effects != null) {
