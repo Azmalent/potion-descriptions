@@ -12,6 +12,7 @@ public class ModConfig {
     public static ForgeConfigSpec.BooleanValue sneakRequired;
     public static ForgeConfigSpec.BooleanValue sneakMessageEnabled;
     public static ForgeConfigSpec.BooleanValue loggingEnabled;
+    public static ForgeConfigSpec.BooleanValue suspiciousStewEnabled;
 
     private static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
     public static ForgeConfigSpec SPEC;
@@ -27,6 +28,9 @@ public class ModConfig {
         loggingEnabled = BUILDER
                 .comment("If true, potions without descriptions will be listed in the logs.")
                 .define("Log Missing Descriptions", false);
+        suspiciousStewEnabled = BUILDER
+                .comment("Whether to display suspicious stew effects in the tooltip.")
+                .define("Suspicious Stew Tooltips", false);
         BUILDER.pop();
 
         SPEC = BUILDER.build();

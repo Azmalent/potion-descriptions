@@ -1,5 +1,5 @@
 {
-  "tooltip.potiondescriptions.effect": "description.: %s%s",
+  "tooltip.potiondescriptions.effect": "Effect: %s%s",
   "tooltip.potiondescriptions.sourceMod": "Added by: §o%s",
   "tooltip.potiondescriptions.sneakToView": "Press §d%s§r for effect description",
   "tooltip.potiondescriptions.missingDescription": "Missing lang key for %s",
