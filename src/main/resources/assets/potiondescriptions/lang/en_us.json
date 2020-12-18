@@ -85,6 +85,10 @@
   "description.effect.potionsmaster.mineshaftpotioneffect": "Teleports the drinker to the nearest mineshaft.",
   "description.effect.potionsmaster.pillager_outpostpotioneffect": "Teleports the drinker to the nearest pillager outpost.",
 
+  "_comment": "Quark",
+  "description.effect.quark.resilience": "Increases knockback resistance.",
+  "description.effect.quark.danger_sight": "Highlights spots where hostile mobs can spawn.",
+
   "_comment": "Reliquary",
   "description.effect.xreliquary.cure": "Cures zombie villagers. Higher levers work faster."
 }

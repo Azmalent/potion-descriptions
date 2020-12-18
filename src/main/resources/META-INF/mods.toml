@@ -1,6 +1,6 @@
 modLoader="javafml"
 loaderVersion="[${fml_min},)"
-license="${license}"
+license="GPL v3.0"
 
 [[mods]]
 modId="${modid}"
@@ -24,7 +24,7 @@ Adds effect descriptions to potion tooltips.
 [[dependencies.potiondescriptions]]
     modId="minecraft"
     mandatory=true
-    versionRange="[${minecraft_version},)"
+    versionRange="${minecraft_version_range}"
     ordering="NONE"
     side="CLIENT"
 

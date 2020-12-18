@@ -75,25 +75,21 @@ public class TooltipHandler {
         boolean sneaking = InputMappings.isKeyDown(Minecraft.getInstance().getMainWindow().getHandle(), keyCode);
 
         if (!sneaking && ModConfig.sneakRequired.get() && ModConfig.sneakMessageEnabled.get()) {
-            addString(tooltip, I18n.format("tooltip.potiondescriptions.sneakToView", I18n.format(sneakButton.getTranslationKey())));
+            tooltip.add(new StringTextComponent(I18n.format("tooltip.potiondescriptions.sneakToView", I18n.format(sneakButton.getTranslationKey()))));
         }
         else if (sneaking || !ModConfig.sneakRequired.get()) {
             for (EffectInstance effectInstance : effects) {
                 Effect effect = effectInstance.getPotion();
 
-                String description = getEffectDescription(effect);
+                ITextComponent description = getEffectDescription(effect);
                 TextFormatting effectFormat = effect.isBeneficial() ? TextFormatting.BLUE : TextFormatting.RED;
                 String effectName = I18n.format(effect.getName());
 
-                addString(tooltip, I18n.format("tooltip.potiondescriptions.effect", effectFormat, effectName));
-                addString(tooltip, description != null ? description : I18n.format("tooltip.potiondescriptions.missingDescription", "description." + effect.getName()));
-                addString(tooltip, I18n.format("tooltip.potiondescriptions.sourceMod", getModName(effect)));
+                tooltip.add(new StringTextComponent(I18n.format("tooltip.potiondescriptions.effect", effectFormat, effectName)));
+                tooltip.add(description != null ? description : new TranslationTextComponent("tooltip.potiondescriptions.missingDescription", "description." + effect.getName()));
+                tooltip.add(new StringTextComponent(I18n.format("tooltip.potiondescriptions.sourceMod", getModName(effect))));
             }
         }
-    }
-
-    private static void addString(List<ITextComponent> tooltip, String string) {
-        tooltip.add(new StringTextComponent(string));
     }
 
     private static String getModName(IForgeRegistryEntry entry) {
@@ -104,18 +100,13 @@ public class TooltipHandler {
         return modid;
     }
 
-    private static String getEffectDescription(Effect effect) {
+    private static ITextComponent getEffectDescription(Effect effect) {
         String translationKey = "description." + effect.getName();
-
-        if (I18n.hasKey(translationKey)) {
-            return I18n.format(translationKey);
-        }
-
-        return null;
+        return I18n.hasKey(translationKey) ? new TranslationTextComponent(translationKey) : null;
     }
 
     private static void addEffectsTooltip(List<EffectInstance> effects, List<ITextComponent> tooltip) {
-        IFormattableTextComponent noEffect = (new TranslationTextComponent("effect.none")).func_240699_a_(TextFormatting.GRAY);
+        IFormattableTextComponent noEffect = (new TranslationTextComponent("effect.none")).mergeStyle(TextFormatting.GRAY);
 
         List<Pair<Attribute, AttributeModifier>> list1 = Lists.newArrayList();
         if (effects.isEmpty()) tooltip.add(noEffect);
@@ -139,13 +130,13 @@ public class TooltipHandler {
                     line = new TranslationTextComponent("potion.withDuration", line, EffectUtils.getPotionDurationString(effectInstance, 1));
                 }
 
-                tooltip.add(line.func_240699_a_(effect.getEffectType().getColor()));
+                tooltip.add(line.mergeStyle(effect.getEffectType().getColor()));
             }
         }
 
         if (!list1.isEmpty()) {
-            tooltip.add(StringTextComponent.field_240750_d_);
-            tooltip.add((new TranslationTextComponent("potion.whenDrank")).func_240699_a_(TextFormatting.DARK_PURPLE));
+            tooltip.add(StringTextComponent.EMPTY);
+            tooltip.add((new TranslationTextComponent("potion.whenDrank")).mergeStyle(TextFormatting.DARK_PURPLE));
 
             for(Pair<Attribute, AttributeModifier> pair : list1) {
                 AttributeModifier attributemodifier2 = pair.getSecond();
@@ -158,10 +149,10 @@ public class TooltipHandler {
                 }
 
                 if (d0 > 0.0D) {
-                    tooltip.add((new TranslationTextComponent("attribute.modifier.plus." + attributemodifier2.getOperation().getId(), ItemStack.DECIMALFORMAT.format(d1), new TranslationTextComponent(pair.getFirst().func_233754_c_()))).func_240699_a_(TextFormatting.BLUE));
+                    tooltip.add((new TranslationTextComponent("attribute.modifier.plus." + attributemodifier2.getOperation().getId(), ItemStack.DECIMALFORMAT.format(d1), new TranslationTextComponent(pair.getFirst().getAttributeName()))).mergeStyle(TextFormatting.BLUE));
                 } else if (d0 < 0.0D) {
                     d1 = d1 * -1.0D;
-                    tooltip.add((new TranslationTextComponent("attribute.modifier.take." + attributemodifier2.getOperation().getId(), ItemStack.DECIMALFORMAT.format(d1), new TranslationTextComponent(pair.getFirst().func_233754_c_()))).func_240699_a_(TextFormatting.RED));
+                    tooltip.add((new TranslationTextComponent("attribute.modifier.take." + attributemodifier2.getOperation().getId(), ItemStack.DECIMALFORMAT.format(d1), new TranslationTextComponent(pair.getFirst().getAttributeName()))).mergeStyle(TextFormatting.RED));
                 }
             }
         }
