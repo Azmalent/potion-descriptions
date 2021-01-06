@@ -3,6 +3,7 @@
   "config.potiondescriptions.sneakingRequired": "Sneaking Required",
   "config.potiondescriptions.sneakingMessageEnabled": "Enable Sneaking Message",
   "config.potiondescriptions.showSourceMod": "Show Source Mod",
+  "config.potiondescriptions.showSuspiciousStewEffects": "Show Suspicious Stew Effects",
 
   "tooltip.potiondescriptions.effect": "Effect: ",
   "tooltip.potiondescriptions.sourceMod": "Added by: ",
@@ -52,5 +53,13 @@
   "effect.extraalchemy.concentration.description": "Removes potion particles in first person view.",
   "effect.extraalchemy.gravity.description": "Prevents the target from flying.",
   "effect.extraalchemy.combustion.description": "Sets the target and its surroundings on fire.",
-  "effect.extraalchemy.pacifism.description": "Inflicts slowness on attackers."
+  "effect.extraalchemy.pacifism.description": "Inflicts slowness on attackers.",
+
+  "_comment": "Botania",
+  "effect.botania.soul_cross.description": "Restores health upon slaying any other creature.",
+  "effect.botania.feather_feet.description": "Negates fall damage.",
+  "effect.botania.emptiness.description": "Prevents mob spawning in a 128 block radius.",
+  "effect.botania.bloodthirst.description": "Allows mobs to spawn regardless of normal conditions within 64 blocks.",
+  "effect.botania.allure.description": "Doubles the speed of catching fish and fishing loot.",
+  "effect.botania.clear.description": "Clears all potion effects, both positive and negative."
 }

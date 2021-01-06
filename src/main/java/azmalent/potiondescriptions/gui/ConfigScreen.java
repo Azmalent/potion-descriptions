@@ -54,6 +54,12 @@ public class ConfigScreen extends Screen {
             (settings, value) -> ConfigManager.config.showSourceMod = value
         ));
 
+        buttonList.addSingleOptionEntry(new BooleanOption(
+            "config.potiondescriptions.showSuspiciousStewEffects",
+            settings -> ConfigManager.config.showSuspiciousStewEffects,
+            (settings, value) -> ConfigManager.config.showSuspiciousStewEffects = value
+        ));
+
         this.children.add(this.buttonList);
 
         this.addButton(new ButtonWidget(

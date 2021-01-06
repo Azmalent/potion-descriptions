@@ -14,6 +14,9 @@ repositories {
 	maven {
 		url = "https://www.cursemaven.com"
 	}
+	flatDir {
+		dirs "libs"
+   	}
 }
 
 dependencies {
@@ -21,7 +24,8 @@ dependencies {
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-	modImplementation "curse.maven:modmenu:3023985"
+	modImplementation "curse.maven:modmenu-308702:${project.modmenu_file_id}"
+	compileOnly "vazkii.botania:Botania:1.16.4-411-FABRIC-SNAPSHOT-dev"
 }
 
 processResources {

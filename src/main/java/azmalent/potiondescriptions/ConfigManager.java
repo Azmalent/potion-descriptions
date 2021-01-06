@@ -14,6 +14,7 @@ public class ConfigManager {
         public boolean sneakingRequired = true;
         public boolean sneakingMessageEnabled = true;
         public boolean showSourceMod = true;
+        public boolean showSuspiciousStewEffects = false;
     }
 
     public static Config config = new Config();

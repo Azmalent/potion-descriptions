@@ -6,7 +6,8 @@
   "mixins": [
   ],
   "client": [
-    "ItemStackMixin"
+    "ItemStackMixin",
+    "KeyBindingMixin"
   ],
   "injectors": {
     "defaultRequire": 1
