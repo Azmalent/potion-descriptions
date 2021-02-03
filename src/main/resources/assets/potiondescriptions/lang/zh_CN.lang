@@ -1,0 +1,175 @@
+tooltip.potiondescriptions.effect=效果: %s%s
+tooltip.potiondescriptions.sourceMod=由: §o%s 添加
+tooltip.potiondescriptions.sneakToView=按下 §d%s§7 查看药水描述
+tooltip.potiondescriptions.missingDescription=缺少描述文件 %s
+
+# Vanilla
+description.effect.moveSpeed=提高行走速度。
+description.effect.moveSlowdown=降低行走速度。
+description.effect.digSpeed=提高采矿和攻击速度。
+description.effect.digSlowDown=降低采矿和攻击速度。
+description.effect.damageBoost=增加近战伤害。
+description.effect.heal=治疗生物并伤害亡灵。
+description.effect.harm=伤害生物并治疗亡灵。
+description.effect.jump=增加跳跃高度，减少坠落伤害。
+description.effect.confusion=使玩家迷失方向。
+description.effect.regeneration=随着时间的推移恢复血量。
+description.effect.resistance=减少受到的伤害。
+description.effect.fireResistance=赋予抗火和熔岩免疫力。
+description.effect.waterBreathing=赋予水下呼吸的能力。
+description.effect.invisibility=隐形。
+description.effect.blindness=缩小观看范围并防止玩家冲刺和造成重大打击。
+description.effect.nightVision=允许在黑暗中看清。
+description.effect.hunger=提高饥饿速度。
+description.effect.weakness=减少近战伤害。
+description.effect.poison=随时间造成伤害，不影响亡灵。
+description.effect.wither=随时间造成伤害。
+description.effect.healthBoost=增加最大的血量。
+description.effect.absorption=授予额外的血量。
+description.effect.saturation=随着时间的流逝恢复饥饿。
+description.effect.glowing=高亮实体，使其透过方块可见高亮实体。
+description.effect.luck=可以增加战利品的数量和质量。
+description.effect.unluck=可以减少战利品的数量和质量。
+description.effect.levitation=使受影响的实体向上浮。
+
+# Bewitchment
+description.bewitchment.absence=清除所有药剂效果，包括正面和负面。
+description.bewitchment.purification=清除所有负面药剂效果。
+description.bewitchment.corruption=清除所有正面药剂效果。
+description.bewitchment.magic_resistance=减少受到的魔法伤害。
+description.bewitchment.magic_weakness=增加受到的魔法伤害。
+description.bewitchment.hellworld=把世界变成虚空。
+description.bewitchment.iceworld=把世界变成冰。创造永久的冰，不会融化。
+description.bewitchment.rubedo=将沙子和有色块变成红色。
+description.bewitchment.citrinitas=将沙子和有色块变成黄色。
+description.bewitchment.desertification=将植物变成沙漠中的对应植物。
+description.bewitchment.fertility=导致植物生长，动物繁殖。
+description.bewitchment.harvest=立即收获并重新播种种子。 可能导致叶子掉落，苹果和南瓜长大。
+description.bewitchment.spore_cloud=导致蘑菇，菌丝体，苔藓和蕨类植物生长。
+description.bewitchment.blight=杀死植物和农作物。 削弱生物。
+description.bewitchment.ruin=导致方块腐烂或分解。
+description.bewitchment.pesticide=对节肢动物造成损害。
+description.bewitchment.arachnophobia=将目标包裹在蜘蛛网中，并召唤周围的蜘蛛。
+description.bewitchment.mending=在污垢和菌丝上生长草，治愈僵尸村民。
+description.bewitchment.holy_water=伤害恶魔和亡灵。
+description.bewitchment.wolfsbane=伤害狼和其他犬科动物。
+description.bewitchment.deviants_decomposure=伤害村民和女巫。
+description.bewitchment.sleeping=蒙蔽并减速目标，如果他们的血量较低可以杀死。
+description.bewitchment.volatility=目标受到伤害后爆炸。
+description.bewitchment.grace=减少跌落伤害。
+description.bewitchment.shell_armor=将部分伤害反弹回攻击者。
+description.bewitchment.deflection=使弹射物偏离目标。
+description.bewitchment.revealing=清除隐形。
+description.bewitchment.disrobing=使装甲和饰品脱离目标。
+description.bewitchment.sinking=降低跳跃高度。
+description.bewitchment.cursed_leaps=向空中发射目标。
+description.bewitchment.fear=使目标恐慌。
+description.bewitchment.corrosion=降低护甲。
+description.bewitchment.bulk=增加装甲。
+description.bewitchment.butterfingers=掉落持有的物品。
+description.bewitchment.rhino_hide=增加护甲韧性。
+description.bewitchment.paper_skin=降低护甲韧性。
+description.bewitchment.rage=激怒怪物。
+description.bewitchment.friendship=驯服动物。
+
+# Botania
+description.botania.potion.soulCross=杀死其他生物后恢复生命。
+description.botania.potion.featherFeet=无摔落伤害。
+description.botania.potion.emptiness=防止怪物在128方块半径内生成。
+description.botania.potion.bloodthirst=不管普通状况如何，生物都能在64个方块内生成。
+description.botania.potion.allure=抓鱼和钓鱼奖励的速度加倍。
+description.botania.potion.clear=清除所有药水效果，包括正面和负面。
+
+# Charm
+description.charm.potion.coffee.name=在短时间内提供速度，急迫和力量。
+description.charm.potion.decay.name=随时间造成伤害。
+description.charm.potion.ender_sight.name=允许定位要塞并吸引末影人。
+
+# Consecration
+description.effect.holy=对亡灵生物造成严重伤害。
+
+# Natural Pledge
+description.naturalpledge.potion.immortality=抵抗大多数形式的伤害。
+description.naturalpledge.potion.drab=将视野变成单色。
+
+# NetherEX
+description.mob_effect.netherex:frozen=防止目标使用物品和攻击, 怪物也被阻止移动。
+description.mob_effect.netherex:frostbitten=阻止生命自然恢复。
+description.mob_effect.netherex:infested=使孢子在目标周围产生。
+description.mob_effect.netherex:crying=使怪兽在目标周围产生（仅在下界），也用来召唤恶魂。
+
+# Mystical Wildlife
+description.potion.effect.mysticalwildlife.breeding=使动物尽可能繁殖并减少繁殖冷却时间。
+description.potion.effect.mysticalwildlife.breeding_instant=使动物立即繁殖。
+
+# Potion Core
+description.effect.fire=使目标着火。
+description.effect.lightning=在目标处生成闪电。
+description.effect.explode=造成爆炸。
+description.effect.burst=产生不会伤害目标和周围方块的爆炸。
+description.effect.weight=降低跳跃高度。
+description.effect.recoil=将部分伤害反射回攻击者。
+description.effect.drown=使目标仅在水下呼吸。
+description.effect.archery=增加射弹物伤害。
+description.effect.klutz=减少弹射物伤害。
+description.effect.vulnerable=增加受到的伤害。
+description.effect.antidote=赋予中毒的免疫力。
+description.effect.purity=免疫凋零。
+description.effect.cure=清除所有负面药水效果。
+description.effect.dispel=清除所有正面药水效果。
+description.effect.slow_fall=降低坠落速度和坠落伤害。
+description.effect.solid_core=增加击退抗性。
+description.effect.launch=向空中发射目标。
+description.effect.climb=允许爬墙。
+description.effect.love=使受影响的动物繁殖。
+description.effect.step_up=增加台阶高度。
+description.effect.perplexity=反转玩家的控制。
+description.effect.disorganization=随机丢弃玩家物品。
+description.effect.spin=使目标旋转。
+description.effect.repair=修理目标的装备和持有物品。
+description.effect.rust=损坏目标的装备和持有物品，黄金不受影响。
+description.effect.extension=延长每级一个随机效果的持续时间。
+description.effect.chance=活得随机的药水效果。
+description.effect.bless=产生随机的正面药水效果。
+description.effect.curse=产生随机的负面药水效果。
+description.effect.teleport=将目标传送到附近的随机位置。
+description.effect.teleport_surface=将目标传送到地面。
+description.effect.teleport_spawn=不动10秒后将你传送到出生点。
+description.effect.flight=创造飞行。
+description.effect.invert=反转药水效果。
+description.effect.revival=死亡时每级恢复2心，恢复目标。
+description.effect.reach=增加触及半径。
+description.effect.magic_focus=增加魔法伤害。
+description.effect.magic_inhibition=减少魔法伤害。
+description.effect.magic_shield=减少受到的魔法伤害。
+description.effect.broken_magic_shield=增加受到的魔法伤害。
+description.effect.iron_skin=增加护甲。
+description.effect.broken_armor=减少护甲。
+description.effect.diamond_skin=增加护甲韧性。
+
+# Railcraft
+description.potion.railcraft.creosote=随时间对节肢动物造成伤害。
+
+# Random PSIdeas
+description.rpsideas.potion.psishock=消耗目标的Psi能量。
+description.rpsideas.potion.psipulse=提高Psi能量恢复速度。
+
+# Random Things
+description.Collapse=撤消玩家的控制。
+
+# Reliquary
+description.xreliquary.potion.cure=治愈僵尸村民，等级越高速度越快。
+
+# Rustic
+description.effect.ironskin=增加护甲和护韧性。
+description.effect.blazing_trail=在目标后面留下火焰。
+description.effect.feather=降低坠落速度并消除坠落伤害。
+description.effect.magic_resistance=减少受到的魔法伤害。
+description.effect.wither_ward=抵抗凋零伤害。
+
+# Quark
+description.quark.potion.resilience.name=增加抗击退能力。
+description.quark.potion.danger_sight.name=突出显示可产生敌对生物的地方。
+
+# Thaumcraft
+description.potion.warpward=保护免受扭曲影响。

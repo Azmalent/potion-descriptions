@@ -64,10 +64,10 @@ repositories {
 
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
-    compileOnly "curse.maven:botania:2846950"
-    compileOnly "curse.maven:actually-additions:2844115"
-    compileOnly "curse.maven:rustic:3028866"
-    compileOnly "curse.maven:reliquary-v1-3:2761319"
+    compileOnly "curse.maven:botania-225643:2846950"
+    compileOnly "curse.maven:actually-additions-228404:2844115"
+    compileOnly "curse.maven:rustic-256141:3028866"
+    compileOnly "curse.maven:reliquary-v1-3-241319:2761319"
 }
 
 processResources {
