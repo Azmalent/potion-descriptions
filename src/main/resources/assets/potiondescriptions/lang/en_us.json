@@ -42,12 +42,15 @@
   "description.effect.atmospheric.spitting": "Makes the user spit out seeds that damage mobs.",
   "description.effect.atmospheric.persistence": "Allows the player to run quicker the lower their hunger is.",
   "description.effect.atmospheric.gelled": "Reduces burning damage, increases life regeneration and extinguishes fire on initial application.",
-  "description.effect.neapolitan.sugar_rush": "Makes the user faster for the first half, and slower for the second.",
-  "description.effect.neapolitan.vanilla_scent": "Prevents the user from receiving incoming effects.",
   "description.effect.upgrade_aquatic.insomnia": "Increases the insomnia timer, causing phantoms to spawn.",
   "description.effect.upgrade_aquatic.restfulness": "Resets the insomnia timer like if the player just slept.",
   "description.effect.upgrade_aquatic.repellence": "Poisons nearby entities.",
   "description.effect.upgrade_aquatic.vibing": "Gives regeneration to nearby entites.",
+
+  "_comment": "Team Aurora Mods",
+  "description.effect.abundance.succumbing": "Poisons the user for a short time when they recieve damage.",
+  "description.effect.abundance.supportive": "Gives regeneration to animals, strength to neutral mobs and resistance to monsters.",
+
 
   "_comment": "Alex's Mobs",
   "description.alexsmobs.potion.knockback_resistance": "Increases knockback resistance.",
