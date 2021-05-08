@@ -1,6 +1,7 @@
 package azmalent.potiondescriptions;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
@@ -34,6 +35,7 @@ import java.util.*;
 
 import static net.minecraftforge.common.util.Constants.*;
 
+@SuppressWarnings({"unchecked", "ConstantConditions"})
 @OnlyIn(Dist.CLIENT)
 public class TooltipHandler {
     public static boolean BOTANIA_LOADED = ModList.get().isLoaded("botania");
@@ -57,7 +59,7 @@ public class TooltipHandler {
         else if (BOTANIA_LOADED && item instanceof IBrewItem) {
             effects = ((IBrewItem) item).getBrew(itemStack).getPotionEffects(itemStack);
         }
-        else if (RELIQUARY_LOADED && (item == ModItems.POTION_ESSENCE || item == ModItems.TIPPED_ARROW || item instanceof PotionItemBase)) {
+        else if (RELIQUARY_LOADED && (item == ModItems.POTION_ESSENCE.get() || item == ModItems.TIPPED_ARROW.get() || item instanceof PotionItemBase)) {
             effects = XRPotionHelper.getPotionEffectsFromStack(itemStack);
         }
 
@@ -67,7 +69,7 @@ public class TooltipHandler {
     }
 
     public static void addPotionTooltip(List<EffectInstance> effectList, List<ITextComponent> tooltip) {
-        Set<EffectInstance> effects = new HashSet(effectList);
+        Set<EffectInstance> effects = Sets.newHashSet(effectList);
         if (effects.isEmpty()) return;
 
         KeyBinding sneakButton = Minecraft.getInstance().gameSettings.keyBindSneak;
@@ -92,7 +94,7 @@ public class TooltipHandler {
         }
     }
 
-    private static String getModName(IForgeRegistryEntry entry) {
+    private static String getModName(IForgeRegistryEntry<?> entry) {
         String modid = entry.getRegistryName().getNamespace();
         Optional<ModContainer> mod = (Optional<ModContainer>) ModList.get().getModContainerById(modid);
         if (mod.isPresent()) return mod.get().getModInfo().getDisplayName();

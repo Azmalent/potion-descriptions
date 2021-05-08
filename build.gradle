@@ -89,14 +89,14 @@ repositories {
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
     compileOnly "curse.maven:botania-225643:3081406"
-    compileOnly "curse.maven:reliquary-v1-3:3072776"
+    compileOnly "curse.maven:reliquary-v1-3:3292211"
 }
 
 processResources {
     from(sourceSets.main.resources.srcDirs) {
         include 'META-INF/mods.toml'
 
-        expand 'modid': modid, 'mod_name': mod_name, 'mod_version': project.version,
+        expand 'mod_name': mod_name, 'mod_version': project.version,
                 'minecraft_version': minecraft_version, 'minecraft_version_range': minecraft_version_range,
                 'fml_min': fml_min, 'forge_version': forge_version
 

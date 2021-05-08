@@ -3,7 +3,7 @@ loaderVersion="[${fml_min},)"
 license="GPL v3.0"
 
 [[mods]]
-modId="${modid}"
+modId="potiondescriptions"
 version="${mod_version}"
 displayName="${mod_name}"
 logoFile="examplemod.png"
@@ -31,11 +31,13 @@ Adds effect descriptions to potion tooltips.
 [[dependencies.potiondescriptions]]
     modId="botania"
     mandatory=false
+    versionRange="[1.16.3-407,)"
     ordering="BEFORE"
     side="CLIENT"
 
 [[dependencies.potiondescriptions]]
     modId="xreliquary"
     mandatory=false
+    versionRange="[1.3.5,)"
     ordering="BEFORE"
     side="CLIENT"
