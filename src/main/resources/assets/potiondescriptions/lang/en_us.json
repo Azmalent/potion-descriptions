@@ -68,5 +68,8 @@
   "effect.biomemakeover.antidote.description": "Removes negative status effects.",
   
   "_comment": "BetterEnd",
-   "effect.betterend.end_veil.description": "Allows the player to stare directly into the eyes of an enderman."
+   "effect.betterend.end_veil.description": "Allows the player to stare directly into the eyes of an enderman.",
+   
+  "_comment": "Desolation",
+  "effect.desolation.cinder_soul.description": "Grants massive damage and resistance boost, fire resistance, and a dash ability(bound to V by default)."
 }
