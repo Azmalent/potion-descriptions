@@ -61,5 +61,15 @@
   "effect.botania.emptiness.description": "Prevents mob spawning in a 128 block radius.",
   "effect.botania.bloodthirst.description": "Allows mobs to spawn regardless of normal conditions within 64 blocks.",
   "effect.botania.allure.description": "Doubles the speed of catching fish and fishing loot.",
-  "effect.botania.clear.description": "Clears all potion effects, both positive and negative."
+  "effect.botania.clear.description": "Clears all potion effects, both positive and negative.",
+  
+  "_comment": "Biome Makeover",
+  "effect.biomemakeover.nocturnal.description": "Prevents phantoms from spawning on you.",
+  "effect.biomemakeover.antidote.description": "Removes negative status effects.",
+  
+  "_comment": "BetterEnd",
+   "effect.betterend.end_veil.description": "Allows the player to stare directly into the eyes of an enderman.",
+   
+  "_comment": "Desolation",
+  "effect.desolation.cinder_soul.description": "Grants massive damage and resistance boost, fire resistance, and a dash ability(bound to V by default)."
 }
