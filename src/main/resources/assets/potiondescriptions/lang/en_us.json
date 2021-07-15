@@ -39,7 +39,8 @@
   "effect.minecraft.unluck.description": "Can decrease the quality and quantity of loot.",
   "effect.minecraft.levitation.description": "Makes affected entities float upward.",
   "effect.minecraft.slow_falling.description": "Reduces falling speed and negates fall damage.",
-
+  "effect.minecraft.dolphins_grace.description": "Increases the player's swimming speed when a dolphin is nearby.",
+  
   "_comment": "Extra Alchemy",
   "effect.extraalchemy.magnetism.description": "Attracts items to the drinker.",
   "effect.extraalchemy.photosynthesis.description": "The drinker will slowly restore hunger when standing in sunlight.",
@@ -54,7 +55,8 @@
   "effect.extraalchemy.gravity.description": "Prevents the target from flying.",
   "effect.extraalchemy.combustion.description": "Sets the target and its surroundings on fire.",
   "effect.extraalchemy.pacifism.description": "Inflicts slowness on attackers.",
-
+  "effect.extraalchemy.detection.description": "Perceive all entities around you in a giant radius for a short time.",
+  
   "_comment": "Botania",
   "effect.botania.soul_cross.description": "Restores health upon slaying any other creature.",
   "effect.botania.feather_feet.description": "Negates fall damage.",
