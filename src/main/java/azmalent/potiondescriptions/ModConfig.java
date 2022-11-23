@@ -5,35 +5,44 @@ import com.electronwill.nightconfig.core.io.WritingMode;
 import net.minecraftforge.common.ForgeConfigSpec;
 
 import java.nio.file.Path;
-import java.util.Arrays;
-import java.util.List;
 
 public class ModConfig {
-    public static ForgeConfigSpec.BooleanValue sneakRequired;
-    public static ForgeConfigSpec.BooleanValue sneakMessageEnabled;
+    public static ForgeConfigSpec.BooleanValue shiftRequired;
+    public static ForgeConfigSpec.BooleanValue pressShiftMessageEnabled;
+    public static ForgeConfigSpec.BooleanValue showSourceModEnabled;
     public static ForgeConfigSpec.BooleanValue loggingEnabled;
     public static ForgeConfigSpec.BooleanValue suspiciousStewEnabled;
 
-    private static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
     public static ForgeConfigSpec SPEC;
 
     static {
-        BUILDER.push("Settings");
-        sneakRequired = BUILDER
-                .comment("Whether sneaking is required to display the tooltip.")
-                .define("Sneaking Required", true);
-        sneakMessageEnabled = BUILDER
-                .comment("Whether to display a message telling the player to sneak.")
-                .define("Enable Sneaking Message", true);
-        loggingEnabled = BUILDER
-                .comment("If true, potions without descriptions will be listed in the logs.")
-                .define("Log Missing Descriptions", false);
-        suspiciousStewEnabled = BUILDER
-                .comment("Whether to display suspicious stew effects in the tooltip.")
-                .define("Suspicious Stew Tooltips", false);
-        BUILDER.pop();
+        var builder = new ForgeConfigSpec.Builder();
 
-        SPEC = BUILDER.build();
+        builder.push("Settings");
+
+        shiftRequired = builder
+            .comment("Whether shift is required to display the tooltip.")
+            .define("Shift Required", true);
+
+        pressShiftMessageEnabled = builder
+            .comment("Whether to display a message telling the player to press shift.")
+            .define("Enable 'Press Shift' Message", true);
+
+        showSourceModEnabled = builder
+            .comment("If true, the source mod will be displayed for non-vanilla effects.")
+            .define("Show Source Mod", true);
+
+        loggingEnabled = builder
+            .comment("If true, effects with missing descriptions will be listed in the logs.")
+            .define("Log Missing Descriptions", true);
+
+        suspiciousStewEnabled = builder
+            .comment("Whether to display suspicious stew effects in the tooltip.")
+            .define("Suspicious Stew Tooltips", false);
+
+        builder.pop();
+
+        SPEC = builder.build();
     }
 
     public static void init(Path filePath) {

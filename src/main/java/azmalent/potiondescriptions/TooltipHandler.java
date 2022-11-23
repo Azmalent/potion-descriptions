@@ -3,43 +3,43 @@ package azmalent.potiondescriptions;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.mojang.datafixers.util.Pair;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.resources.I18n;
-import net.minecraft.client.settings.KeyBinding;
-import net.minecraft.client.util.InputMappings;
-import net.minecraft.entity.ai.attributes.Attribute;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.ListNBT;
-import net.minecraft.potion.Effect;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.EffectUtils;
-import net.minecraft.potion.PotionUtils;
-import net.minecraft.util.text.*;
+import net.minecraft.ChatFormatting;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.resources.language.I18n;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.Tag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffectUtil;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModContainer;
 import net.minecraftforge.fml.ModList;
-import net.minecraftforge.registries.IForgeRegistryEntry;
+import reliquary.init.ModItems;
+import reliquary.items.PotionItemBase;
+import reliquary.util.potions.XRPotionHelper;
 import vazkii.botania.api.brew.IBrewItem;
-import xreliquary.init.ModItems;
-import xreliquary.items.PotionItemBase;
-import xreliquary.util.potions.XRPotionHelper;
 
 import java.util.*;
-
-import static net.minecraftforge.common.util.Constants.*;
 
 @SuppressWarnings({"unchecked", "ConstantConditions"})
 @OnlyIn(Dist.CLIENT)
 public class TooltipHandler {
     public static boolean BOTANIA_LOADED = ModList.get().isLoaded("botania");
-    public static boolean RELIQUARY_LOADED = ModList.get().isLoaded("xreliquary");
+    public static boolean RELIQUARY_LOADED = ModList.get().isLoaded("reliquary");
 
     @SubscribeEvent
     public static void onTooltipDisplayed(final ItemTooltipEvent event) {
@@ -48,9 +48,9 @@ public class TooltipHandler {
 
         Item item = itemStack.getItem();
 
-        List<EffectInstance> effects = null;
+        List<MobEffectInstance> effects = null;
         if (itemStack.hasTag() && itemStack.getTag().contains("Potion")) {
-            effects = PotionUtils.getEffectsFromStack(itemStack);
+            effects = PotionUtils.getMobEffects(itemStack);
         }
         else if (item == Items.SUSPICIOUS_STEW && ModConfig.suspiciousStewEnabled.get()) {
             effects = getSuspiciousStewEffects(itemStack);
@@ -68,111 +68,115 @@ public class TooltipHandler {
         }
     }
 
-    public static void addPotionTooltip(List<EffectInstance> effectList, List<ITextComponent> tooltip) {
-        Set<EffectInstance> effects = Sets.newHashSet(effectList);
+    public static void addPotionTooltip(List<MobEffectInstance> effectList, List<Component> tooltip) {
+        Set<MobEffectInstance> effects = Sets.newHashSet(effectList);
         if (effects.isEmpty()) return;
 
-        KeyBinding sneakButton = Minecraft.getInstance().gameSettings.keyBindSneak;
-        int keyCode = sneakButton.getKey().getKeyCode();
-        boolean sneaking = InputMappings.isKeyDown(Minecraft.getInstance().getMainWindow().getHandle(), keyCode);
+        boolean sneaking = Screen.hasShiftDown();
 
-        if (!sneaking && ModConfig.sneakRequired.get() && ModConfig.sneakMessageEnabled.get()) {
-            tooltip.add(new StringTextComponent(I18n.format("tooltip.potiondescriptions.sneakToView", I18n.format(sneakButton.getTranslationKey()))));
-        }
-        else if (sneaking || !ModConfig.sneakRequired.get()) {
-            for (EffectInstance effectInstance : effects) {
-                Effect effect = effectInstance.getPotion();
+        if (!sneaking && ModConfig.shiftRequired.get() && ModConfig.pressShiftMessageEnabled.get()) {
+            tooltip.add(new TextComponent(I18n.get("tooltip.potiondescriptions.sneakToView")));
+        } else if (sneaking || !ModConfig.shiftRequired.get()) {
+            for (MobEffectInstance effectInstance : effects) {
+                MobEffect effect = effectInstance.getEffect();
 
-                ITextComponent description = getEffectDescription(effect);
-                TextFormatting effectFormat = effect.isBeneficial() ? TextFormatting.BLUE : TextFormatting.RED;
-                String effectName = I18n.format(effect.getName());
+                Component description = getEffectDescription(effect);
+                ChatFormatting effectFormat = effect.isBeneficial() ? ChatFormatting.BLUE : ChatFormatting.RED;
+                String effectName = I18n.get(effect.getDescriptionId());
 
-                tooltip.add(new StringTextComponent(I18n.format("tooltip.potiondescriptions.effect", effectFormat, effectName)));
-                tooltip.add(description != null ? description : new TranslationTextComponent("tooltip.potiondescriptions.missingDescription", "description." + effect.getName()));
-                tooltip.add(new StringTextComponent(I18n.format("tooltip.potiondescriptions.sourceMod", getModName(effect))));
+                tooltip.add(new TextComponent(I18n.get("tooltip.potiondescriptions.effect", effectFormat, effectName)));
+                tooltip.add(description != null ? description : new TranslatableComponent("tooltip.potiondescriptions.missingDescription", "description." + effect.getDescriptionId()));
+
+                var modid = effect.getRegistryName().getNamespace();
+                if (ModConfig.showSourceModEnabled.get() && !modid.equals("minecraft")) {
+                    tooltip.add(new TextComponent(I18n.get("tooltip.potiondescriptions.sourceMod", getModName(modid))));
+                }
             }
         }
     }
 
-    private static String getModName(IForgeRegistryEntry<?> entry) {
-        String modid = entry.getRegistryName().getNamespace();
+    private static String getModName(String modid) {
         Optional<ModContainer> mod = (Optional<ModContainer>) ModList.get().getModContainerById(modid);
         if (mod.isPresent()) return mod.get().getModInfo().getDisplayName();
 
         return modid;
     }
 
-    private static ITextComponent getEffectDescription(Effect effect) {
-        String translationKey = "description." + effect.getName();
-        return I18n.hasKey(translationKey) ? new TranslationTextComponent(translationKey) : null;
+    private static Component getEffectDescription(MobEffect effect) {
+        String translationKey = "description." + effect.getDescriptionId();
+        return I18n.exists(translationKey) ? new TranslatableComponent(translationKey) : null;
     }
 
-    private static void addEffectsTooltip(List<EffectInstance> effects, List<ITextComponent> tooltip) {
-        IFormattableTextComponent noEffect = (new TranslationTextComponent("effect.none")).mergeStyle(TextFormatting.GRAY);
+    private static void addEffectsTooltip(List<MobEffectInstance> effects, List<Component> tooltip) {
+        MutableComponent noEffect = (new TranslatableComponent("effect.none")).withStyle(ChatFormatting.GRAY);
 
         List<Pair<Attribute, AttributeModifier>> list1 = Lists.newArrayList();
         if (effects.isEmpty()) tooltip.add(noEffect);
         else {
-            for(EffectInstance effectInstance : effects) {
-                IFormattableTextComponent line = new TranslationTextComponent(effectInstance.getEffectName());
-                Effect effect = effectInstance.getPotion();
-                Map<Attribute, AttributeModifier> map = effect.getAttributeModifierMap();
+            for(MobEffectInstance effectInstance : effects) {
+                MutableComponent line = new TranslatableComponent(effectInstance.getEffect().getDescriptionId());
+                MobEffect effect = effectInstance.getEffect();
+                Map<Attribute, AttributeModifier> map = effect.getAttributeModifiers();
                 if (!map.isEmpty()) {
                     for(Map.Entry<Attribute, AttributeModifier> entry : map.entrySet()) {
                         AttributeModifier attributemodifier = entry.getValue();
-                        AttributeModifier attributemodifier1 = new AttributeModifier(attributemodifier.getName(), effect.getAttributeModifierAmount(effectInstance.getAmplifier(), attributemodifier), attributemodifier.getOperation());
+                        AttributeModifier attributemodifier1 = new AttributeModifier(attributemodifier.getName(), effect.getAttributeModifierValue(effectInstance.getAmplifier(), attributemodifier), attributemodifier.getOperation());
                         list1.add(new Pair<>(entry.getKey(), attributemodifier1));
                     }
                 }
 
                 if (effectInstance.getAmplifier() > 0) {
-                    line = new TranslationTextComponent("potion.withAmplifier", line, new TranslationTextComponent("potion.potency." + effectInstance.getAmplifier()));
+                    line = new TranslatableComponent("potion.withAmplifier", line, new TranslatableComponent("potion.potency." + effectInstance.getAmplifier()));
                 }
                 else if (effectInstance.getDuration() > 20) {
-                    line = new TranslationTextComponent("potion.withDuration", line, EffectUtils.getPotionDurationString(effectInstance, 1));
+                    line = new TranslatableComponent("potion.withDuration", line, MobEffectUtil.formatDuration(effectInstance, 1));
                 }
 
-                tooltip.add(line.mergeStyle(effect.getEffectType().getColor()));
+                tooltip.add(line.withStyle(effect.getCategory().getTooltipFormatting()));
             }
         }
 
         if (!list1.isEmpty()) {
-            tooltip.add(StringTextComponent.EMPTY);
-            tooltip.add((new TranslationTextComponent("potion.whenDrank")).mergeStyle(TextFormatting.DARK_PURPLE));
+            tooltip.add(TextComponent.EMPTY);
+            tooltip.add((new TranslatableComponent("potion.whenDrank")).withStyle(ChatFormatting.DARK_PURPLE));
 
             for(Pair<Attribute, AttributeModifier> pair : list1) {
-                AttributeModifier attributemodifier2 = pair.getSecond();
-                double d0 = attributemodifier2.getAmount();
-                double d1;
-                if (attributemodifier2.getOperation() != AttributeModifier.Operation.MULTIPLY_BASE && attributemodifier2.getOperation() != AttributeModifier.Operation.MULTIPLY_TOTAL) {
-                    d1 = attributemodifier2.getAmount();
-                } else {
-                    d1 = attributemodifier2.getAmount() * 100.0D;
+                AttributeModifier modifier = pair.getSecond();
+                double amount = modifier.getAmount();
+                if (amount == 0) continue;
+
+                double d1 = modifier.getAmount();
+                if (modifier.getOperation() == AttributeModifier.Operation.MULTIPLY_BASE || modifier.getOperation() == AttributeModifier.Operation.MULTIPLY_TOTAL) {
+                    d1 *= 100.0D;
                 }
 
-                if (d0 > 0.0D) {
-                    tooltip.add((new TranslationTextComponent("attribute.modifier.plus." + attributemodifier2.getOperation().getId(), ItemStack.DECIMALFORMAT.format(d1), new TranslationTextComponent(pair.getFirst().getAttributeName()))).mergeStyle(TextFormatting.BLUE));
-                } else if (d0 < 0.0D) {
-                    d1 = d1 * -1.0D;
-                    tooltip.add((new TranslationTextComponent("attribute.modifier.take." + attributemodifier2.getOperation().getId(), ItemStack.DECIMALFORMAT.format(d1), new TranslationTextComponent(pair.getFirst().getAttributeName()))).mergeStyle(TextFormatting.RED));
-                }
+                if (amount < 0.0D) d1 *= -1.0D;
+
+                tooltip.add((
+                    new TranslatableComponent(
+                        String.format("attribute.modifier.%s.%d", amount > 0 ? "plus" : "take", modifier.getOperation().toValue()),
+                        ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(d1),
+                        new TranslatableComponent(pair.getFirst().getDescriptionId())
+                    )
+                ).withStyle(amount > 0 ? ChatFormatting.BLUE : ChatFormatting.RED));
             }
         }
     }
 
-    private static List<EffectInstance> getSuspiciousStewEffects(ItemStack stew) {
-        List<EffectInstance> effectInstances = new ArrayList<>();
+    private static List<MobEffectInstance> getSuspiciousStewEffects(ItemStack stew) {
+        List<MobEffectInstance> effectInstances = new ArrayList<>();
 
-        CompoundNBT tag = stew.getTag();
-        if (tag != null && tag.contains("Effects", NBT.TAG_LIST)) {
-            ListNBT list = tag.getList("Effects", NBT.TAG_COMPOUND);
+        CompoundTag tag = stew.getTag();
+        if (tag != null && tag.contains("Effects", Tag.TAG_LIST)) {
+            ListTag list = tag.getList("Effects", Tag.TAG_COMPOUND);
             for(int i = 0; i < list.size(); i++) {
-                CompoundNBT effect = list.getCompound(i);
-                byte id = effect.getByte("EffectId");
-                int duration = effect.contains("EffectDuration", NBT.TAG_INT) ? effect.getInt("EffectDuration") : 160;
+                CompoundTag effectTag = list.getCompound(i);
+                byte id = effectTag.getByte("EffectId");
+                int duration = effectTag.contains("EffectDuration", Tag.TAG_INT) ? effectTag.getInt("EffectDuration") : 160;
 
-                if (Effect.get(id) != null) {
-                    effectInstances.add(new EffectInstance(Effect.get(id), duration));
+                var effect = MobEffect.byId(id);
+                if (effect != null) {
+                    effectInstances.add(new MobEffectInstance(effect, duration));
                 }
             }
         }
