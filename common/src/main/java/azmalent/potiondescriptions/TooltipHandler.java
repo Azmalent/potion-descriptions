@@ -1,5 +1,6 @@
 package azmalent.potiondescriptions;
 
+import azmalent.potiondescriptions.platform.Services;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.mojang.datafixers.util.Pair;
@@ -24,26 +25,16 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.event.entity.player.ItemTooltipEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.ModContainer;
-import net.minecraftforge.fml.ModList;
-import reliquary.init.ModItems;
-import reliquary.items.PotionItemBase;
-import reliquary.util.potions.XRPotionHelper;
-import vazkii.botania.api.brew.IBrewItem;
 
 import java.util.*;
 
-@SuppressWarnings({"unchecked", "ConstantConditions"})
 @OnlyIn(Dist.CLIENT)
 public class TooltipHandler {
-    public static boolean BOTANIA_LOADED = ModList.get().isLoaded("botania");
-    public static boolean RELIQUARY_LOADED = ModList.get().isLoaded("reliquary");
+    public static boolean BOTANIA_LOADED = Services.PLATFORM.isModLoaded("botania");
+    public static boolean RELIQUARY_LOADED = Services.PLATFORM.isModLoaded("reliquary");
 
-    @SubscribeEvent
-    public static void onTooltipDisplayed(final ItemTooltipEvent event) {
-        ItemStack itemStack = event.getItemStack();
+    @SuppressWarnings("DataFlowIssue")
+    public static void onTooltip(ItemStack itemStack, List<Component> tooltip) {
         if (itemStack.isEmpty()) return;
 
         Item item = itemStack.getItem();
@@ -52,19 +43,19 @@ public class TooltipHandler {
         if (itemStack.hasTag() && itemStack.getTag().contains("Potion")) {
             effects = PotionUtils.getMobEffects(itemStack);
         }
-        else if (item == Items.SUSPICIOUS_STEW && ModConfig.suspiciousStewEnabled.get()) {
+        else if (item == Items.SUSPICIOUS_STEW && Services.CONFIG.suspiciousStewEnabled()) {
             effects = getSuspiciousStewEffects(itemStack);
-            addEffectsTooltip(effects, event.getToolTip());
+            addEffectsTooltip(effects, tooltip);
         }
-        else if (BOTANIA_LOADED && item instanceof IBrewItem) {
-            effects = ((IBrewItem) item).getBrew(itemStack).getPotionEffects(itemStack);
+        else if (BOTANIA_LOADED && Services.INTEGRATION.isBotaniaPotion(itemStack)) {
+            effects = Services.INTEGRATION.getBotaniaEffects(itemStack);
         }
-        else if (RELIQUARY_LOADED && (item == ModItems.POTION_ESSENCE.get() || item == ModItems.TIPPED_ARROW.get() || item instanceof PotionItemBase)) {
-            effects = XRPotionHelper.getPotionEffectsFromStack(itemStack);
+        else if (RELIQUARY_LOADED && Services.INTEGRATION.isReliquaryPotion(itemStack)) {
+            effects = Services.INTEGRATION.getReliquaryEffects(itemStack);
         }
 
         if (effects != null) {
-            addPotionTooltip(effects, event.getToolTip());
+            addPotionTooltip(effects, tooltip);
         }
     }
 
@@ -74,9 +65,9 @@ public class TooltipHandler {
 
         boolean sneaking = Screen.hasShiftDown();
 
-        if (!sneaking && ModConfig.shiftRequired.get() && ModConfig.pressShiftMessageEnabled.get()) {
+        if (!sneaking && Services.CONFIG.shiftRequired() && Services.CONFIG.pressShiftMessageEnabled()) {
             tooltip.add(new TextComponent(I18n.get("tooltip.potiondescriptions.sneakToView")));
-        } else if (sneaking || !ModConfig.shiftRequired.get()) {
+        } else if (sneaking || !Services.CONFIG.shiftRequired()) {
             for (MobEffectInstance effectInstance : effects) {
                 MobEffect effect = effectInstance.getEffect();
 
@@ -87,19 +78,12 @@ public class TooltipHandler {
                 tooltip.add(new TextComponent(I18n.get("tooltip.potiondescriptions.effect", effectFormat, effectName)));
                 tooltip.add(description != null ? description : new TranslatableComponent("tooltip.potiondescriptions.missingDescription", "description." + effect.getDescriptionId()));
 
-                var modid = effect.getRegistryName().getNamespace();
-                if (ModConfig.showSourceModEnabled.get() && !modid.equals("minecraft")) {
-                    tooltip.add(new TextComponent(I18n.get("tooltip.potiondescriptions.sourceMod", getModName(modid))));
+                var modid = Services.PLATFORM.getEffectRegistryName(effect).getNamespace();
+                if (Services.CONFIG.showSourceMod() && !modid.equals("minecraft")) {
+                    tooltip.add(new TextComponent(I18n.get("tooltip.potiondescriptions.sourceMod", Services.PLATFORM.getModName(modid))));
                 }
             }
         }
-    }
-
-    private static String getModName(String modid) {
-        Optional<ModContainer> mod = (Optional<ModContainer>) ModList.get().getModContainerById(modid);
-        if (mod.isPresent()) return mod.get().getModInfo().getDisplayName();
-
-        return modid;
     }
 
     private static Component getEffectDescription(MobEffect effect) {
@@ -107,6 +91,8 @@ public class TooltipHandler {
         return I18n.exists(translationKey) ? new TranslatableComponent(translationKey) : null;
     }
 
+    //Copied from vanilla
+    @SuppressWarnings("MagicNumber")
     private static void addEffectsTooltip(List<MobEffectInstance> effects, List<Component> tooltip) {
         MutableComponent noEffect = (new TranslatableComponent("effect.none")).withStyle(ChatFormatting.GRAY);
 
@@ -163,6 +149,7 @@ public class TooltipHandler {
         }
     }
 
+    @SuppressWarnings("MagicNumber")
     private static List<MobEffectInstance> getSuspiciousStewEffects(ItemStack stew) {
         List<MobEffectInstance> effectInstances = new ArrayList<>();
 

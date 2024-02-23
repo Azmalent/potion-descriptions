@@ -23,7 +23,7 @@
   "description.effect.minecraft.night_vision": "Allows seeing in the dark.",
   "description.effect.minecraft.hunger": "Increases hunger exhaustion rate.",
   "description.effect.minecraft.weakness": "Decreases melee damage.",
-  "description.effect.minecraft.poison": "Deals damage over time. Does not affect undead.",
+  "description.effect.minecraft.poison": "Deals damage over time, but doesn't kill.",
   "description.effect.minecraft.wither": "Deals damage over time.",
   "description.effect.minecraft.health_boost": "Increases maximum health.",
   "description.effect.minecraft.absorption": "Grants additional health points.",

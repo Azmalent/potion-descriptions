@@ -9,7 +9,7 @@ import java.nio.file.Path;
 public class ModConfig {
     public static ForgeConfigSpec.BooleanValue shiftRequired;
     public static ForgeConfigSpec.BooleanValue pressShiftMessageEnabled;
-    public static ForgeConfigSpec.BooleanValue showSourceModEnabled;
+    public static ForgeConfigSpec.BooleanValue showSourceMod;
     public static ForgeConfigSpec.BooleanValue loggingEnabled;
     public static ForgeConfigSpec.BooleanValue suspiciousStewEnabled;
 
@@ -28,7 +28,7 @@ public class ModConfig {
             .comment("Whether to display a message telling the player to press shift.")
             .define("Enable 'Press Shift' Message", true);
 
-        showSourceModEnabled = builder
+        showSourceMod = builder
             .comment("If true, the source mod will be displayed for non-vanilla effects.")
             .define("Show Source Mod", true);
 

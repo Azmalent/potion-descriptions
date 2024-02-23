@@ -1,16 +1,14 @@
 modLoader="javafml"
 loaderVersion="[${fml_min},)"
-license="GPL v3.0"
+license="${mod_license}"
 
 [[mods]]
 modId="potiondescriptions"
 version="${mod_version}"
 displayName="${mod_name}"
 logoFile="examplemod.png"
-authors="Azmalent"
-description='''
-Adds effect descriptions to potion tooltips.
-'''
+authors="${mod_author}"
+description="${mod_description}"
 
 [[dependencies.potiondescriptions]]
     modId="forge"
