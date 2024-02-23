@@ -17,6 +17,10 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.parchmentmc.librarian.forgegradle'
 apply plugin: 'org.spongepowered.mixin'
 
+group =  "${mod_author}.${modid}"
+archivesBaseName = modid
+version = "${minecraft_version}-${mod_version}-forge"
+
 minecraft {
     mappings channel: mappings_channel, version: mappings_version
 
