@@ -3,6 +3,7 @@
   "tooltip.potiondescriptions.sourceMod": "Added by: §o%s",
   "tooltip.potiondescriptions.sneakToView": "Press §dShift§r for effect description",
   "tooltip.potiondescriptions.missingDescription": "Missing lang key for %s",
+
   "_comment_vanilla": "Vanilla",
   "description.effect.minecraft.speed": "Increases walking speed.",
   "description.effect.minecraft.slowness": "Decreases walking speed.",
@@ -36,6 +37,15 @@
   "description.effect.minecraft.dolphins_grace": "Increases swimming speed.",
   "description.effect.minecraft.bad_omen": "Causes a raid to start upon entering a village.",
   "description.effect.minecraft.hero_of_the_village": "Gives discounts when trading and causes villagers to give gifts to the player.",
+
+  "_comment_modmenu": "ModMenu",
+  "text.autoconfig.potiondescriptions.title": "Potion Descriptions",
+  "modmenu.descriptionTranslation.potiondescriptions": "Adds effect descriptions to potion tooltips.",
+  "text.autoconfig.potiondescriptions.option.shiftRequired": "Require sneaking to display tooltip",
+  "text.autoconfig.potiondescriptions.option.pressShiftMessageEnabled": "Show 'Press Shift' message",
+  "text.autoconfig.potiondescriptions.option.showSourceMod": "Show source mod in tooltip",
+  "text.autoconfig.potiondescriptions.option.loggingEnabled": "Log missing localization keys",
+  "text.autoconfig.potiondescriptions.option.suspiciousStewEnabled": "Enable suspicious stew tooltips",
 
   "_comment_abnormals": "Abnormals Mods",
   "description.effect.autumnity.extension": "Extends the duration of active potion effects.",

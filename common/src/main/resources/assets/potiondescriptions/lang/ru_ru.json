@@ -38,6 +38,15 @@
   "description.effect.minecraft.bad_omen": "Провоцирует рейд, если игрок войдёт в деревню.",
   "description.effect.minecraft.hero_of_the_village": "Жители дают игроку скидку и дарят ему подарки.",
 
+  "_comment_modmenu": "ModMenu",
+  "text.autoconfig.potiondescriptions.title": "Potion Descriptions",
+  "modmenu.descriptionTranslation.potiondescriptions": "Добавляет описание эффектов во всплывающие подсказки зелий.",
+  "text.autoconfig.potiondescriptions.option.shiftRequired": "Отображать описание только при нажатии Shift",
+  "text.autoconfig.potiondescriptions.option.pressShiftMessageEnabled": "Показывать сообщение 'Нажмите Shift'",
+  "text.autoconfig.potiondescriptions.option.showSourceMod": "Отображать мод, добавляющий эффект",
+  "text.autoconfig.potiondescriptions.option.loggingEnabled": "Выводить в журнал недостающие ключи локализации",
+  "text.autoconfig.potiondescriptions.option.suspiciousStewEnabled": "Отображать эффект подозрительного супа",
+
   "_comment_abnormals": "Abnormals Mods",
   "description.effect.autumnity.extension": "Продлевает другие активные эффекты.",
   "description.effect.autumnity.foul_taste": "Следующая съеденная пища восстановит на 50% больше голода, чем обычно.",
@@ -172,5 +181,5 @@
   "description.effect.quark.danger_sight": "Подвечивает места, где могут спавниться враждебные мобы.",
 
   "_comment_reliquary": "Reliquary",
-  "description.effect.reliquary.cure": "Лечит зомби-жителей. Чем выше уровень, тем быстрее действует эффект.",,
+  "description.effect.reliquary.cure": "Лечит зомби-жителей. Чем выше уровень, тем быстрее действует эффект."
 }

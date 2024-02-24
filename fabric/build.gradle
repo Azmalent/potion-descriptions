@@ -7,11 +7,12 @@ group =  "azmalent.${modid}"
 archivesBaseName = modid
 version = "${minecraft_version}-${mod_version}-fabric"
 
+//TODO: fix Botania not working in runtime
 repositories {
     maven { url 'https://maven.parchmentmc.org' }
     maven { url "https://maven.shedaniel.me" } //Cloth Config
     maven { url 'https://maven.terraformersmc.com/releases/' } //Trinkets & ModMenu
-    maven { url 'https://maven.ladysnake.org/releases' } //Trinkets
+    //maven { url 'https://maven.ladysnake.org/releases/' } //CCE for Trinkets
     mavenCentral()
 }
 
@@ -31,15 +32,17 @@ dependencies {
         exclude(group: "net.fabricmc.fabric-api")
     }
 
-    runtimeOnly "dev.emi:trinkets:${trinkets_version}"
-    runtimeOnly "vazkii.patchouli:Patchouli:${patchouli_version}-FABRIC"
-    compileOnly "vazkii.botania:Botania:${botania_version}:api"
-    runtimeOnly "vazkii.botania:Botania:${botania_version}-FABRIC"
-
-    compileOnly "vazkii.botania:Botania:1.16.4-411-FABRIC-SNAPSHOT-dev"
+    modApi "vazkii.botania:Botania:${botania_version}:api"
+/*  modLocalRuntime "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-base:${cca_version}"
+    modLocalRuntime "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-entity:${cca_version}"
+    modLocalRuntime "dev.emi:trinkets:${trinkets_version}"
+    modImplementation "vazkii.patchouli:Patchouli:${patchouli_version}-FABRIC"
+    modImplementation "vazkii.botania:Botania:${botania_version}-FABRIC"*/
 }
 
 loom {
+    mixin.defaultRefmapName = "${modid}.mixins.refmap.json"
+
     runs {
         client {
             client()
@@ -56,8 +59,8 @@ loom {
     }
 }
 
-
 processResources {
+    filteringCharset = "UTF-8"
     from project(":common").sourceSets.main.resources
 
     def buildProps = [
