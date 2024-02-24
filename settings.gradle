@@ -10,14 +10,9 @@ pluginManagement {
             url = 'https://maven.fabricmc.net/'
         }
 
-        maven {
-            name = 'Cotton'
-            url = 'https://server.bbkr.space/artifactory/libs-release/'
-        }
-
         mavenCentral()
         gradlePluginPortal()
     }
 }
 
-include('common', 'forge')
+include('common', 'forge', 'fabric')

@@ -27,7 +27,7 @@
   "description.effect.minecraft.wither": "Постепенно наносит урон.",
   "description.effect.minecraft.health_boost": "Повышает максимальное здоровье.",
   "description.effect.minecraft.absorption": "Даёт дополнительные очки здоровья.",
-  "description.effect.minecraft.saturation": "Постепенно восстанавливает голод.",
+  "description.effect.minecraft.saturation": "Постепенно утоляет голод.",
   "description.effect.minecraft.glowing": "Подсвечивает сущности, позволяя видеть их сквозь стены.",
   "description.effect.minecraft.luck": "Повышает качество и количество лута.",
   "description.effect.minecraft.unluck": "Снижает качество и количество лута.",
@@ -82,6 +82,13 @@
   "description.alexsmobs.potion.debilitating_sting": "Парализует членистоногих, а остальным наносит урон до половины здоровья.",
   "description.alexsmobs.potion.exsanguination": "Быстро наносит урон в течение некоторого времени.",
 
+  "_comment_betterend": "BetterEnd",
+  "effect.betterend.end_veil.description": "Позволяет безопасно смотреть на эндерменов.",
+
+  "_comment_biomemakeover": "Biome Makeover",
+  "effect.biomemakeover.nocturnal.description": "Не даёт фантомам спавниться над игроком.",
+  "effect.biomemakeover.antidote.description": "Снимает отрицательные эффекты.",
+
   "_comment_botania": "Botania",
   "description.effect.botania.soul_cross": "Восстанавливает здоровье при убийстве других сущностей.",
   "description.effect.botania.feather_feet": "Нейтрализует урон от падения.",
@@ -92,7 +99,26 @@
 
   "_comment_consecration": "Consecration",
   "description.effect.consecration.holy": "Наносит высокий урон нежити.",
-  
+
+  "_comment_desolation": "Desolation",
+  "effect.desolation.cinder_soul.description": "Даёт большой бонус к урону и сопротивлению, защиту от огня и способность делать рывок (клавиша V по умолчанию).",
+
+  "_comment_extraalchemy": "Extra Alchemy",
+  "effect.extraalchemy.magnetism.description": "Притягивает предметы к игроку.",
+  "effect.extraalchemy.photosynthesis.description": "Постепенно утоляет голод, когда игрок стоит под солнечным светом.",
+  "effect.extraalchemy.crumbling.description": "Дробит блоки под игроком.",
+  "effect.extraalchemy.sails.description": "Повышает скорость плавания на лодке.",
+  "effect.extraalchemy.fuse.description": "Создаёт взрыв по окончании действия.",
+  "effect.extraalchemy.recall.description": "По окончании действия телепортирует игрока в точку, где было выпито зелье.",
+  "effect.extraalchemy.returning.description": "Телепортирует игрока на его точку возрождения.",
+  "effect.extraalchemy.piper.description": "Заставляет животных следовать за игроком.",
+  "effect.extraalchemy.learning.description": "Повышает получаемый опыт на 10% и притягивает сферы опыта к игроку.",
+  "effect.extraalchemy.concentration.description": "Убирает частицы эффектов при виде от первого лица.",
+  "effect.extraalchemy.gravity.description": "Лишает возможности летать.",
+  "effect.extraalchemy.combustion.description": "Поджигает цель и область вокруг неё.",
+  "effect.extraalchemy.pacifism.description": "Накладывает замедление на атакующих.",
+  "effect.extraalchemy.detection.description": "Подсвечивает все сущности вокруг игрока.",
+
   "_comment_farmersdelight": "Farmer's Delight",
   "description.effect.farmersdelight.comfort": "Даёт иммунитет к замедлению, голоду и слабости.",
   "description.effect.farmersdelight.nourished": "Не даёт игроку терять голод и насыщение.",
@@ -146,5 +172,5 @@
   "description.effect.quark.danger_sight": "Подвечивает места, где могут спавниться враждебные мобы.",
 
   "_comment_reliquary": "Reliquary",
-  "description.effect.reliquary.cure": "Лечит зомби-жителей. Чем выше уровень, тем быстрее действует эффект."
+  "description.effect.reliquary.cure": "Лечит зомби-жителей. Чем выше уровень, тем быстрее действует эффект.",,
 }

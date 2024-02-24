@@ -1,0 +1,87 @@
+plugins {
+    id 'fabric-loom' version '0.11-SNAPSHOT'
+    id 'idea'
+}
+
+group =  "azmalent.${modid}"
+archivesBaseName = modid
+version = "${minecraft_version}-${mod_version}-fabric"
+
+repositories {
+    maven { url 'https://maven.parchmentmc.org' }
+    maven { url "https://maven.shedaniel.me" } //Cloth Config
+    maven { url 'https://maven.terraformersmc.com/releases/' } //Trinkets & ModMenu
+    maven { url 'https://maven.ladysnake.org/releases' } //Trinkets
+    mavenCentral()
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${minecraft_version}"
+    mappings loom.layered() {
+        officialMojangMappings()
+        parchment("org.parchmentmc.data:parchment-${minecraft_version}:${mappings_version}@zip")
+    }
+
+    modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
+    implementation project(":common")
+
+    modImplementation "com.terraformersmc:modmenu:${modmenu_version}"
+    modApi("me.shedaniel.cloth:cloth-config-fabric:${cloth_config_version}") {
+        exclude(group: "net.fabricmc.fabric-api")
+    }
+
+    runtimeOnly "dev.emi:trinkets:${trinkets_version}"
+    runtimeOnly "vazkii.patchouli:Patchouli:${patchouli_version}-FABRIC"
+    compileOnly "vazkii.botania:Botania:${botania_version}:api"
+    runtimeOnly "vazkii.botania:Botania:${botania_version}-FABRIC"
+
+    compileOnly "vazkii.botania:Botania:1.16.4-411-FABRIC-SNAPSHOT-dev"
+}
+
+loom {
+    runs {
+        client {
+            client()
+            setConfigName("Fabric Client")
+            ideConfigGenerated(true)
+            runDir("run")
+        }
+        server {
+            server()
+            setConfigName("Fabric Server")
+            ideConfigGenerated(true)
+            runDir("run")
+        }
+    }
+}
+
+
+processResources {
+    from project(":common").sourceSets.main.resources
+
+    def buildProps = [
+            'mod_name': mod_name,
+            'mod_version': mod_version,
+            'mod_description': mod_description,
+            'mod_license': mod_license,
+            'mod_homepage': mod_homepage,
+            'mod_github': mod_github,
+            'minecraft_version': minecraft_version,
+            'fabric_loader_version': fabric_loader_version
+    ]
+
+    filesMatching(['fabric.mod.json']) {
+        expand buildProps
+    }
+}
+
+tasks.withType(JavaCompile) {
+    source(project(":common").sourceSets.main.allSource)
+}
+
+jar {
+    from("LICENSE") {
+        rename { "${it}_${mod_name}" }
+    }
+}

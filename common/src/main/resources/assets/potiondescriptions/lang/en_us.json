@@ -3,7 +3,6 @@
   "tooltip.potiondescriptions.sourceMod": "Added by: §o%s",
   "tooltip.potiondescriptions.sneakToView": "Press §dShift§r for effect description",
   "tooltip.potiondescriptions.missingDescription": "Missing lang key for %s",
-
   "_comment_vanilla": "Vanilla",
   "description.effect.minecraft.speed": "Increases walking speed.",
   "description.effect.minecraft.slowness": "Decreases walking speed.",
@@ -82,6 +81,13 @@
   "description.alexsmobs.potion.debilitating_sting": "Paralyzes arthropods and deals damage to non-arthropods until half health.",
   "description.alexsmobs.potion.exsanguination": "Deals rapid damage over time.",
 
+  "_comment_betterend": "BetterEnd",
+  "effect.betterend.end_veil.description": "Allows the player to stare directly into the eyes of an enderman.",
+
+  "_comment_biomemakeover": "Biome Makeover",
+  "effect.biomemakeover.nocturnal.description": "Prevents phantoms from spawning on you.",
+  "effect.biomemakeover.antidote.description": "Removes negative status effects.",
+
   "_comment_botania": "Botania",
   "description.effect.botania.soul_cross": "Restores health upon slaying any other creature.",
   "description.effect.botania.feather_feet": "Negates fall damage.",
@@ -92,7 +98,26 @@
 
   "_comment_consecration": "Consecration",
   "description.effect.consecration.holy": "Deals heavy damage to undead.",
-  
+
+  "_comment_desolation": "Desolation",
+  "effect.desolation.cinder_soul.description": "Grants massive damage and resistance boost, fire resistance, and a dash ability (bound to V by default).",
+
+  "_comment_extraalchemy": "Extra Alchemy",
+  "effect.extraalchemy.magnetism.description": "Attracts items to the drinker.",
+  "effect.extraalchemy.photosynthesis.description": "The drinker will slowly restore hunger when standing in sunlight.",
+  "effect.extraalchemy.crumbling.description": "Crumbles blocks beneath the drinker.",
+  "effect.extraalchemy.sails.description": "Increases the speed of traveling on a boat.",
+  "effect.extraalchemy.fuse.description": "Causes an explosion upon expiring.",
+  "effect.extraalchemy.recall.description": "Teleports the drinker to the starting point upon expiring.",
+  "effect.extraalchemy.returning.description": "Teleports the drinker to their respawn point.",
+  "effect.extraalchemy.piper.description": "Causes animals to follow the drinker.",
+  "effect.extraalchemy.learning.description": "Increases XP gain by 10% and XP orb pickup radius.",
+  "effect.extraalchemy.concentration.description": "Removes potion particles in first person view.",
+  "effect.extraalchemy.gravity.description": "Prevents the target from flying.",
+  "effect.extraalchemy.combustion.description": "Sets the target and its surroundings on fire.",
+  "effect.extraalchemy.pacifism.description": "Inflicts slowness on attackers.",
+  "effect.extraalchemy.detection.description": "Perceive all entities around you in a giant radius for a short time.",
+
   "_comment_farmersdelight": "Farmer's Delight",
   "description.effect.farmersdelight.comfort": "Grants immunity to Slowness, Hunger and Weakness.",
   "description.effect.farmersdelight.nourished": "Prevents the player from losing hunger or saturation.",

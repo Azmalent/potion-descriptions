@@ -21,24 +21,24 @@ public class ModConfig {
         builder.push("Settings");
 
         shiftRequired = builder
-            .comment("Whether shift is required to display the tooltip.")
-            .define("Shift Required", true);
+            .comment(ModConstants.Config.SHIFT_REQUIRED_COMMENT)
+            .define(ModConstants.Config.SHIFT_REQUIRED, true);
 
         pressShiftMessageEnabled = builder
-            .comment("Whether to display a message telling the player to press shift.")
-            .define("Enable 'Press Shift' Message", true);
+            .comment(ModConstants.Config.PRESS_SHIFT_MESSAGE_COMMENT)
+            .define(ModConstants.Config.PRESS_SHIFT_MESSAGE, true);
 
         showSourceMod = builder
-            .comment("If true, the source mod will be displayed for non-vanilla effects.")
-            .define("Show Source Mod", true);
+            .comment(ModConstants.Config.SHOW_SOURCE_MOD_COMMENT)
+            .define(ModConstants.Config.SHOW_SOURCE_MOD, true);
 
         loggingEnabled = builder
-            .comment("If true, effects with missing descriptions will be listed in the logs.")
-            .define("Log Missing Descriptions", true);
+            .comment(ModConstants.Config.LOGGING_COMMENT)
+            .define(ModConstants.Config.LOGGING, true);
 
         suspiciousStewEnabled = builder
-            .comment("Whether to display suspicious stew effects in the tooltip.")
-            .define("Suspicious Stew Tooltips", false);
+            .comment(ModConstants.Config.SUSPICIOUS_STEW_TOOLTIP_COMMENT)
+            .define(ModConstants.Config.SUSPICIOUS_STEW_TOOLTIP, false);
 
         builder.pop();
 

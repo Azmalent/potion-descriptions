@@ -23,12 +23,9 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionUtils;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.*;
 
-@OnlyIn(Dist.CLIENT)
 public class TooltipHandler {
     public static boolean BOTANIA_LOADED = Services.PLATFORM.isModLoaded("botania");
     public static boolean RELIQUARY_LOADED = Services.PLATFORM.isModLoaded("reliquary");

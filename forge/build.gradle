@@ -17,12 +17,12 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.parchmentmc.librarian.forgegradle'
 apply plugin: 'org.spongepowered.mixin'
 
-group =  "${mod_author}.${modid}"
+group =  "azmalent.${modid}"
 archivesBaseName = modid
 version = "${minecraft_version}-${mod_version}-forge"
 
 minecraft {
-    mappings channel: mappings_channel, version: mappings_version
+    mappings channel: 'parchment', version: "${mappings_version}-${minecraft_version}"
 
     runs {
         client {
@@ -98,15 +98,24 @@ mixin {
 }
 
 processResources {
+    from project(":common").sourceSets.main.resources
+
+    def buildProps = [
+            'mod_name': mod_name,
+            'mod_version': mod_version,
+            'mod_description': mod_description,
+            'mod_license': mod_license,
+            'minecraft_version': minecraft_version,
+            'minecraft_version_range': minecraft_version_range,
+            'fml_min': fml_min,
+            'forge_version': forge_version,
+            'botania_version': botania_version,
+            'reliquary_version': reliquary_version
+    ]
+
     from(sourceSets.main.resources.srcDirs) {
         include 'META-INF/mods.toml'
-
-        expand  'mod_name': mod_name, 'mod_version': mod_version, 'mod_description': mod_description,
-                'mod_author': mod_author, 'mod_license': mod_license,
-                'minecraft_version': minecraft_version, 'minecraft_version_range': minecraft_version_range,
-                'fml_min': fml_min, 'forge_version': forge_version,
-                'botania_version': botania_version,
-                'reliquary_version': reliquary_version
+        expand buildProps
     }
 
     from(sourceSets.main.resources.srcDirs) {
@@ -118,10 +127,6 @@ processResources {
 
 tasks.withType(JavaCompile) {
     source(project(":common").sourceSets.main.allSource)
-}
-
-processResources {
-    from project(":common").sourceSets.main.resources
 }
 
 jar.finalizedBy('reobfJar')

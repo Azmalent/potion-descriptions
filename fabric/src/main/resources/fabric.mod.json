@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "id": "potiondescriptions",
+  "version": "${mod_version}",
+
+  "name": "${mod_name}",
+  "description": ",${mod_description}",
+  "authors": [ "azmalent" ],
+  "contact": {
+    "homepage": "${mod_homepage}",
+    "sources": "${mod_github}",
+    "issues": "${mod_github}/issues"
+  },
+
+  "license": "${mod_license}",
+  "icon": "icon.png",
+
+  "environment": "*",
+  "custom": {
+    "modmenu:clientsideOnly": true
+  },
+  "entrypoints": {
+    "client": [
+      "azmalent.potiondescriptions.PotionDescriptions"
+    ],
+    "modmenu": [
+      "azmalent.potiondescriptions.integration.PotionDescriptionsModMenu"
+    ]
+  },
+  "mixins": [
+    "potiondescriptions.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=${fabric_loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}",
+    "java": ">=17",
+    "cloth-config2": "^6.0.0"
+  }
+}

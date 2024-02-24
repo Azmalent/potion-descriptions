@@ -6,8 +6,8 @@ license="${mod_license}"
 modId="potiondescriptions"
 version="${mod_version}"
 displayName="${mod_name}"
-logoFile="examplemod.png"
-authors="${mod_author}"
+logoFile="icon.png"
+authors="azmalent"
 description="${mod_description}"
 
 [[dependencies.potiondescriptions]]
