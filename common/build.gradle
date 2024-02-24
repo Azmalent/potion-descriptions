@@ -19,8 +19,4 @@ processResources {
     filesMatching(['pack.mcmeta']) {
         expand 'mod_name': mod_name
     }
-
-    filesMatching(['en_us.json']) {
-        expand 'mod_description': mod_description
-    }
 }
