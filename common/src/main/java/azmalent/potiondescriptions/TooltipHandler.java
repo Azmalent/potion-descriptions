@@ -10,10 +10,9 @@ import net.minecraft.client.resources.language.I18n;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
+import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffectUtil;
@@ -63,7 +62,7 @@ public class TooltipHandler {
         boolean sneaking = Screen.hasShiftDown();
 
         if (!sneaking && Services.CONFIG.shiftRequired() && Services.CONFIG.pressShiftMessageEnabled()) {
-            tooltip.add(new TextComponent(I18n.get("tooltip.potiondescriptions.sneakToView")));
+            tooltip.add(Component.translatable("tooltip.potiondescriptions.sneakToView"));
         } else if (sneaking || !Services.CONFIG.shiftRequired()) {
             for (MobEffectInstance effectInstance : effects) {
                 MobEffect effect = effectInstance.getEffect();
@@ -72,32 +71,32 @@ public class TooltipHandler {
                 ChatFormatting effectFormat = effect.isBeneficial() ? ChatFormatting.BLUE : ChatFormatting.RED;
                 String effectName = I18n.get(effect.getDescriptionId());
 
-                tooltip.add(new TextComponent(I18n.get("tooltip.potiondescriptions.effect", effectFormat, effectName)));
-                tooltip.add(description != null ? description : new TranslatableComponent("tooltip.potiondescriptions.missingDescription", "description." + effect.getDescriptionId()));
+                tooltip.add(Component.translatable("tooltip.potiondescriptions.effect", effectFormat, effectName));
+                tooltip.add(description != null ? description : Component.translatable("tooltip.potiondescriptions.missingDescription", effect.getDescriptionId() + ".desc"));
 
                 var modid = Services.PLATFORM.getEffectRegistryName(effect).getNamespace();
                 if (Services.CONFIG.showSourceMod() && !modid.equals("minecraft")) {
-                    tooltip.add(new TextComponent(I18n.get("tooltip.potiondescriptions.sourceMod", Services.PLATFORM.getModName(modid))));
+                    tooltip.add(Component.translatable("tooltip.potiondescriptions.sourceMod", Services.PLATFORM.getModName(modid)));
                 }
             }
         }
     }
 
     private static Component getEffectDescription(MobEffect effect) {
-        String translationKey = "description." + effect.getDescriptionId();
-        return I18n.exists(translationKey) ? new TranslatableComponent(translationKey) : null;
+        String translationKey = effect.getDescriptionId() + ".desc";
+        return I18n.exists(translationKey) ? Component.translatable(translationKey) : null;
     }
 
     //Copied from vanilla
     @SuppressWarnings("MagicNumber")
     private static void addEffectsTooltip(List<MobEffectInstance> effects, List<Component> tooltip) {
-        MutableComponent noEffect = (new TranslatableComponent("effect.none")).withStyle(ChatFormatting.GRAY);
+        MutableComponent noEffect = (Component.translatable("effect.none")).withStyle(ChatFormatting.GRAY);
 
         List<Pair<Attribute, AttributeModifier>> list1 = Lists.newArrayList();
         if (effects.isEmpty()) tooltip.add(noEffect);
         else {
             for(MobEffectInstance effectInstance : effects) {
-                MutableComponent line = new TranslatableComponent(effectInstance.getEffect().getDescriptionId());
+                MutableComponent line = Component.translatable(effectInstance.getEffect().getDescriptionId());
                 MobEffect effect = effectInstance.getEffect();
                 Map<Attribute, AttributeModifier> map = effect.getAttributeModifiers();
                 if (!map.isEmpty()) {
@@ -109,10 +108,10 @@ public class TooltipHandler {
                 }
 
                 if (effectInstance.getAmplifier() > 0) {
-                    line = new TranslatableComponent("potion.withAmplifier", line, new TranslatableComponent("potion.potency." + effectInstance.getAmplifier()));
+                    line = Component.translatable("potion.withAmplifier", line, Component.translatable("potion.potency." + effectInstance.getAmplifier()));
                 }
                 else if (effectInstance.getDuration() > 20) {
-                    line = new TranslatableComponent("potion.withDuration", line, MobEffectUtil.formatDuration(effectInstance, 1));
+                    line = Component.translatable("potion.withDuration", line, MobEffectUtil.formatDuration(effectInstance, 1));
                 }
 
                 tooltip.add(line.withStyle(effect.getCategory().getTooltipFormatting()));
@@ -120,8 +119,8 @@ public class TooltipHandler {
         }
 
         if (!list1.isEmpty()) {
-            tooltip.add(TextComponent.EMPTY);
-            tooltip.add((new TranslatableComponent("potion.whenDrank")).withStyle(ChatFormatting.DARK_PURPLE));
+            tooltip.add(CommonComponents.EMPTY);
+            tooltip.add(Component.translatable("potion.whenDrank").withStyle(ChatFormatting.DARK_PURPLE));
 
             for(Pair<Attribute, AttributeModifier> pair : list1) {
                 AttributeModifier modifier = pair.getSecond();
@@ -136,10 +135,10 @@ public class TooltipHandler {
                 if (amount < 0.0D) d1 *= -1.0D;
 
                 tooltip.add((
-                    new TranslatableComponent(
+                    Component.translatable(
                         String.format("attribute.modifier.%s.%d", amount > 0 ? "plus" : "take", modifier.getOperation().toValue()),
                         ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(d1),
-                        new TranslatableComponent(pair.getFirst().getDescriptionId())
+                        Component.translatable(pair.getFirst().getDescriptionId())
                     )
                 ).withStyle(amount > 0 ? ChatFormatting.BLUE : ChatFormatting.RED));
             }

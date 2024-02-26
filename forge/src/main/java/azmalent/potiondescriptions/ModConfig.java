@@ -10,7 +10,6 @@ public class ModConfig {
     public static ForgeConfigSpec.BooleanValue shiftRequired;
     public static ForgeConfigSpec.BooleanValue pressShiftMessageEnabled;
     public static ForgeConfigSpec.BooleanValue showSourceMod;
-    public static ForgeConfigSpec.BooleanValue loggingEnabled;
     public static ForgeConfigSpec.BooleanValue suspiciousStewEnabled;
 
     public static ForgeConfigSpec SPEC;
@@ -31,10 +30,6 @@ public class ModConfig {
         showSourceMod = builder
             .comment(ModConstants.Config.SHOW_SOURCE_MOD_COMMENT)
             .define(ModConstants.Config.SHOW_SOURCE_MOD, true);
-
-        loggingEnabled = builder
-            .comment(ModConstants.Config.LOGGING_COMMENT)
-            .define(ModConstants.Config.LOGGING, true);
 
         suspiciousStewEnabled = builder
             .comment(ModConstants.Config.SUSPICIOUS_STEW_TOOLTIP_COMMENT)

@@ -14,9 +14,7 @@ description="${mod_description}"
     modId="forge"
     mandatory=true
     versionRange="[${forge_version},)"
-    # An ordering relationship for the dependency - BEFORE or AFTER required if the relationship is not mandatory
     ordering="NONE"
-    # Side this dependency is applied on - BOTH, CLIENT or SERVER
     side="CLIENT"
 
 [[dependencies.potiondescriptions]]
@@ -29,7 +27,7 @@ description="${mod_description}"
 [[dependencies.potiondescriptions]]
     modId="botania"
     mandatory=false
-    versionRange="[${botania_version},)"
+    versionRange="[${minecraft_version}-${botania_version},)"
     ordering="BEFORE"
     side="CLIENT"
 

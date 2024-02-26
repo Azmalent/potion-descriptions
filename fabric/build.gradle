@@ -32,12 +32,12 @@ dependencies {
         exclude(group: "net.fabricmc.fabric-api")
     }
 
-    modApi "vazkii.botania:Botania:${botania_version}:api"
+    modApi "vazkii.botania:Botania:${minecraft_version}-${botania_version}-FORGE:api"
 /*  modLocalRuntime "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-base:${cca_version}"
     modLocalRuntime "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-entity:${cca_version}"
     modLocalRuntime "dev.emi:trinkets:${trinkets_version}"
-    modImplementation "vazkii.patchouli:Patchouli:${patchouli_version}-FABRIC"
-    modImplementation "vazkii.botania:Botania:${botania_version}-FABRIC"*/
+    modImplementation "vazkii.patchouli:Patchouli:${minecraft_version}-${patchouli_version}-FABRIC"
+    modImplementation "vazkii.botania:Botania:${minecraft_version}-${botania_version}-FABRIC"*/
 }
 
 loom {

@@ -84,10 +84,10 @@ dependencies {
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
     compileOnly project(":common")
 
-    runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
-    runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}")
-    compileOnly fg.deobf("vazkii.botania:Botania:${botania_version}:api")
-    runtimeOnly fg.deobf("vazkii.botania:Botania:${botania_version}")
+    runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${minecraft_version}-${curios_version}")
+    runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:${minecraft_version}-${patchouli_version}")
+    compileOnly fg.deobf("vazkii.botania:Botania:${minecraft_version}-${botania_version}-FORGE:api")
+    runtimeOnly fg.deobf("vazkii.botania:Botania:${minecraft_version}-${botania_version}-FORGE")
 
     implementation fg.deobf("curse.maven:reliquary-v1-3-241319:${reliquary_file_id}")
 }

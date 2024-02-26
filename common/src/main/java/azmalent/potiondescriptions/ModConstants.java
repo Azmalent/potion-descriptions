@@ -8,7 +8,7 @@ public final class ModConstants {
     public static final Logger LOGGER = LoggerFactory.getLogger(MODID);
 
     //Config entries
-    public final class Config {
+    public static final class Config {
         public static final String SHIFT_REQUIRED = "Shift Required";
         public static final String SHIFT_REQUIRED_COMMENT = "Whether shift is required to display the tooltip.";
 

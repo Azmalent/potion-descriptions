@@ -27,7 +27,7 @@ public class ForgePlatformHelper implements IPlatformHelper {
 
     @Override
     public ResourceLocation getEffectRegistryName(MobEffect effect) {
-        return effect.getRegistryName();
+        return ForgeRegistries.MOB_EFFECTS.getKey(effect);
     }
 
     @Override

@@ -26,6 +26,6 @@ public class ForgeConfigHelper implements IConfigHelper {
 
     @Override
     public boolean loggingEnabled() {
-        return ModConfig.loggingEnabled.get();
+        return true; //Forge loads language files before configs
     }
 }

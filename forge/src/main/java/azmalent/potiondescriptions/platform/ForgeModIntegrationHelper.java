@@ -7,20 +7,20 @@ import net.minecraft.world.item.ItemStack;
 import reliquary.init.ModItems;
 import reliquary.items.PotionItemBase;
 import reliquary.util.potions.XRPotionHelper;
-import vazkii.botania.api.brew.IBrewItem;
+import vazkii.botania.api.brew.BrewItem;
 
 import java.util.List;
 
 public class ForgeModIntegrationHelper implements IModIntegrationHelper {
     @Override
     public boolean isBotaniaPotion(ItemStack itemStack) {
-        return itemStack.getItem() instanceof IBrewItem;
+        return itemStack.getItem() instanceof BrewItem;
     }
 
     @Override
     public List<MobEffectInstance> getBotaniaEffects(ItemStack itemStack) {
         Item item = itemStack.getItem();
-        return ((IBrewItem) item).getBrew(itemStack).getPotionEffects(itemStack);
+        return ((BrewItem) item).getBrew(itemStack).getPotionEffects(itemStack);
     }
 
     @Override
