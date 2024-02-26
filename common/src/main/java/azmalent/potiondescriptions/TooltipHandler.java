@@ -72,7 +72,7 @@ public class TooltipHandler {
                 String effectName = I18n.get(effect.getDescriptionId());
 
                 tooltip.add(Component.translatable("tooltip.potiondescriptions.effect", effectFormat, effectName));
-                tooltip.add(description != null ? description : Component.translatable("tooltip.potiondescriptions.missingDescription", effect.getDescriptionId() + ".desc"));
+                tooltip.add(description != null ? description : Component.translatable("tooltip.potiondescriptions.missingDescription", effect.getDescriptionId() + ".description"));
 
                 var modid = Services.PLATFORM.getEffectRegistryName(effect).getNamespace();
                 if (Services.CONFIG.showSourceMod() && !modid.equals("minecraft")) {
@@ -83,7 +83,7 @@ public class TooltipHandler {
     }
 
     private static Component getEffectDescription(MobEffect effect) {
-        String translationKey = effect.getDescriptionId() + ".desc";
+        String translationKey = effect.getDescriptionId() + ".description";
         return I18n.exists(translationKey) ? Component.translatable(translationKey) : null;
     }
 
